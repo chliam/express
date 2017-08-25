@@ -1,0 +1,104 @@
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 <>f__AnonymousType0`1 生成存根: 类型已密封。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 <>f__AnonymousType1`2 生成存根: 类型已密封。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 <>f__AnonymousType2`2 生成存根: 类型已密封。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.MySqlClient.MySqlProviderManifest 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.MySqlClient.MySqlProviderServices 生成存根: 类型已密封。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlModelCacheKeyFactory 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.EServiceType 生成存根: 类型是一个值类型。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlLogger 生成存根: method System.Text.Encoding System.IO.TextWriter.get_Encoding() unstubbable: 方法是抽象的，因此无法用作存根。原因: 类型 System.Text.Encoding 在目标框架版本中不可用。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.EFMySqlCommand 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.EFMySqlDataReader 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.TableFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.InputFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.JoinFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.SqlFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.SqlFragmentVisitor 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.ReplaceTableNameVisitor 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.BinaryFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.InFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.CaseFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.ColumnFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.ExistsFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.FunctionFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.IsNullFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.LikeFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.ListFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.NegatableFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.LiteralFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.PropertyFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.SortFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.UnionFragment 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.DeleteGenerator 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.FunctionGenerator 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.FunctionProcessor 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.InsertGenerator 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.Scope 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.OpType 生成存根: 类型是一个值类型。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.SelectGenerator 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.SqlGenerator 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.UpdateGenerator 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlSpatialServices 生成存根: 类型已密封。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlSpatialDataReader 生成存根: 类型已密封。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.DeleteStatement 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.InsertStatement 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.Metadata 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.SelectStatement 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.UpdateStatement 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.Properties.Resources 生成存根: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 <PrivateImplementationDetails> 生成存根: 类型已密封。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 <>f__AnonymousType0`1 生成填充码: 类型不受支持，因为存在内部限制。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 <>f__AnonymousType1`2 生成填充码: 类型不受支持，因为存在内部限制。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 <>f__AnonymousType2`2 生成填充码: 类型不受支持，因为存在内部限制。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.MySqlClient.MySqlProviderManifest 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlModelCacheKeyFactory 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.EServiceType 生成填充码: 类型是一个枚举。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlEFConfiguration+<>c 生成填充码: 类型不受支持，因为存在内部限制。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.EFMySqlCommand 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.EFMySqlDataReader 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.TableFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.InputFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.JoinFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.SqlFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.SqlFragmentVisitor 生成填充码: 类型是一个接口。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.ReplaceTableNameVisitor 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.BinaryFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.InFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.CaseFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.ColumnFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.ExistsFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.FunctionFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.IsNullFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.LikeFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.ListFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.NegatableFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.LiteralFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.PropertyFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.SortFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.UnionFragment 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.DeleteGenerator 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.FunctionGenerator 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.FunctionProcessor 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.InsertGenerator 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.Scope 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.OpType 生成填充码: 类型是一个枚举。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.SelectGenerator 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.SqlGenerator 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.UpdateGenerator 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlMigrationCodeGenerator+<>c 生成填充码: 类型不受支持，因为存在内部限制。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlMigrationCodeGenerator+<>c__DisplayClass13_0 生成填充码: 类型不受支持，因为存在内部限制。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlMigrationCodeGenerator+<>c__DisplayClass5_0 生成填充码: 类型不受支持，因为存在内部限制。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlMigrationSqlGenerator+<>c 生成填充码: 类型不受支持，因为存在内部限制。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlMigrationSqlGenerator+<>c__DisplayClass32_0 生成填充码: 类型不受支持，因为存在内部限制。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlMigrationSqlGenerator+<>c__DisplayClass34_0 生成填充码: 类型不受支持，因为存在内部限制。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlMigrationSqlGenerator+<>c__DisplayClass39_0 生成填充码: 类型不受支持，因为存在内部限制。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlMigrationSqlGenerator+<>c__DisplayClass41_0 生成填充码: 类型不受支持，因为存在内部限制。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlMigrationSqlGenerator+OpDispatcher 生成填充码: 类型是一个委托。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlSpatialServices 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.MySqlSpatialDataReader 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.DeleteStatement 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.InsertStatement 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.Metadata 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.SelectStatement 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.UpdateStatement 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 MySql.Data.Entity.Properties.Resources 生成填充码: 类型对 exported or assembly(MySql.Data.Entity.EF6.6.9.9.0.Fakes) 不可见。
+G:\Work\Express\Express\Data\Fakes\MySql.Data.Entity.EF6.fakes : warning : 无法为 <PrivateImplementationDetails> 生成填充码: 类型不受支持，因为存在内部限制。
