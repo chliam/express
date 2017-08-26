@@ -22,7 +22,11 @@ namespace ExpressService
             LogHelper.LogInfo("启动服务");
             try
             {
-                
+                if (!Socket.Socket.Run(true))
+                {
+                    LogHelper.LogInfo("启动服务失败");
+                    this.Stop();
+                }
             }
             catch (Exception es)
             {
@@ -37,7 +41,7 @@ namespace ExpressService
             LogHelper.LogInfo("停止服务");
             try
             {
-                
+                Socket.Socket.Stop();
             }
             catch (Exception es)
             {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.btnConn = new System.Windows.Forms.Button();
             this.btnDoor = new System.Windows.Forms.Button();
             this.txtServer = new System.Windows.Forms.TextBox();
@@ -79,7 +80,7 @@
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(93, 21);
             this.txtServer.TabIndex = 2;
-            this.txtServer.Text = "127.0.0.1";
+            this.txtServer.Text = "116.62.146.2";
             // 
             // txtPort
             // 
@@ -217,7 +218,7 @@
             this.txtExpressID.Name = "txtExpressID";
             this.txtExpressID.Size = new System.Drawing.Size(93, 21);
             this.txtExpressID.TabIndex = 15;
-            this.txtExpressID.Text = "D36528";
+            this.txtExpressID.Text = "KD0001";
             // 
             // txtLongitude
             // 
@@ -311,6 +312,7 @@
             this.Controls.Add(this.txtServer);
             this.Controls.Add(this.btnDoor);
             this.Controls.Add(this.btnConn);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "快递箱-模拟器";

@@ -39,7 +39,7 @@ namespace ExpressService
                             SelfInstaller.UninstallMe();
                             break;
                         case ("r"):
-                            Socket.Socket.run();
+                            Socket.Socket.Run(false);
                             break;
                         default:
                             Console.WriteLine("不可用的命令！");

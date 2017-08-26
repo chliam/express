@@ -34,6 +34,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
@@ -121,6 +124,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\SelfInstaller.cs" />
+    <Compile Include="Socket\Cmd\CmdHelper.cs" />
     <Compile Include="Socket\Cmd\CONN.cs" />
     <Compile Include="Socket\Cmd\DOOR.cs" />
     <Compile Include="Socket\Cmd\PING.cs" />
@@ -128,9 +132,11 @@
     <Compile Include="Socket\MsgPackReceiveFilterFactory.cs" />
     <Compile Include="Socket\MsgPackServer.cs" />
     <Compile Include="Socket\MsgPackSession.cs" />
+    <Compile Include="Socket\SessionCaches.cs" />
     <Compile Include="Socket\Socket.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="logo.ico" />
     <None Include="App.config" />
     <Content Include="Config\log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -145,7 +151,12 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{16a5515e-ef92-4f39-97a1-cfb336261947}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

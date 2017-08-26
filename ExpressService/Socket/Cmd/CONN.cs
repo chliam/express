@@ -11,11 +11,44 @@ namespace ExpressService.Socket
     public class CONN : CommandBase<MsgPackSession, BinaryRequestInfo>
     {
         public override void ExecuteCommand(MsgPackSession session, BinaryRequestInfo requestInfo)
-        {            
-            var result = Encoding.UTF8.GetString(requestInfo.Body);
-            Console.WriteLine(string.Format("Key:{0} Body:{1}",requestInfo.Key,result));
-            session.Send(result);
+        {
+            try
+            {
+                var scid = Encoding.UTF8.GetString(requestInfo.Body);
+                Console.WriteLine(string.Format("命令:{0} 柜子编号:{1}", requestInfo.Key, scid));
+                var scinfo = Data.Entities.Instance.scinfoes.FirstOrDefault(p => p.id == scid);
+                if (scinfo == null)
+                {
+                    var sendData = CmdHelper.GenSocketData(new List<byte[]> {
+                    new byte[] { 0x02 },
+                    Encoding.UTF8.GetBytes("NONE"),
+                    new byte[] { 0x00 }
+                });
+                    session.Send(sendData, 0, sendData.Length);
+                }
+                else
+                {
+                    SessionCaches.SCSessionDic[session.SessionID] = scid;
+                    var sendData = CmdHelper.GenSocketData(new List<byte[]> {
+                    new byte[] { 0x02 },
+                    Encoding.UTF8.GetBytes("CONN"),
+                    new byte[] { 0x08 },
+                    new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },
+                    new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
+                });
+                    session.Send(sendData, 0, sendData.Length);
+                }
+            }
+            catch (Exception es)
+            {
+                LogHelper.LogError(es);
+                var sendData = CmdHelper.GenSocketData(new List<byte[]> {
+                        new byte[] { 0x02 },
+                        Encoding.UTF8.GetBytes("ERRO"),
+                        new byte[] { 0x00 }
+                    });
+                session.Send(sendData, 0, sendData.Length);
+            }
         }
-
     }
 }
