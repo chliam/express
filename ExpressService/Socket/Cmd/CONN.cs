@@ -17,27 +17,15 @@ namespace ExpressService.Socket
                 var scid = Encoding.UTF8.GetString(requestInfo.Body);
                 Console.WriteLine(string.Format("命令:{0} 柜子编号:{1}", requestInfo.Key, scid));
                 var scinfo = Data.Entities.Instance.scinfoes.FirstOrDefault(p => p.id == scid);
-                if (scinfo == null)
-                {
-                    var sendData = CmdHelper.GenSocketData(new List<byte[]> {
-                    new byte[] { 0x02 },
-                    Encoding.UTF8.GetBytes("NONE"),
-                    new byte[] { 0x00 }
-                });
-                    session.Send(sendData, 0, sendData.Length);
-                }
-                else
-                {
-                    SessionCaches.SCSessionDic[session.SessionID] = scid;
-                    var sendData = CmdHelper.GenSocketData(new List<byte[]> {
+                SessionCaches.SCSessionDic[session.SessionID] = scid;
+                var sendData = CmdHelper.GenSocketData(new List<byte[]> {
                     new byte[] { 0x02 },
                     Encoding.UTF8.GetBytes("CONN"),
                     new byte[] { 0x08 },
                     new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },
                     new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
-                });
-                    session.Send(sendData, 0, sendData.Length);
-                }
+                 });
+                session.Send(sendData, 0, sendData.Length);
             }
             catch (Exception es)
             {
