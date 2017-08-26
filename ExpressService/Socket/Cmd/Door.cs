@@ -56,7 +56,7 @@ namespace ExpressService.Socket
                         if (!string.IsNullOrEmpty(express.scid) && scid == express.scid)
                         {
                             express.outtime = DateTime.Now;
-                            express.state = "0";
+                            express.state = "2";
                             Data.Entities.Instance.SaveChanges();
                             var sendData = CmdHelper.GenSocketData(new List<byte[]> {
                             new byte[] { 0x02 },

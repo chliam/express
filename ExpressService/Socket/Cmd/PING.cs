@@ -32,7 +32,7 @@ namespace ExpressService.Socket.Cmd
                         Data.Entities.Instance.SaveChanges();
                     }
                     var scinfo = Data.Entities.Instance.scinfoes.FirstOrDefault(p => p.id == scid);
-                    if (scinfo != null && scinfo.gpg != gpsinfo)
+                    if (scinfo != null && string.IsNullOrEmpty(scinfo.gpg))
                     {
                         scinfo.gpg = gpsinfo;
                         Data.Entities.Instance.SaveChanges();
