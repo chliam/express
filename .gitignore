@@ -7,3 +7,5 @@
 /ExpressService/bin
 /ExpressApi/bin
 /ExpressApi/obj
+/app/.vs
+/app/express.sln
