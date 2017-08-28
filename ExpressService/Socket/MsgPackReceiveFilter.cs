@@ -20,7 +20,7 @@ namespace ExpressService.Socket
             var headerData = new byte[1];
             Array.Copy(header, offset + 5, headerData, 0, 1);
             //return BitConverter.ToInt32(headerData,0);
-            return (int)headerData[0];
+            return (int)headerData[0]+8;
         }
 
         protected override BinaryRequestInfo ResolveRequestInfo(ArraySegment<byte> header, byte[] bodyBuffer, int offset, int length)

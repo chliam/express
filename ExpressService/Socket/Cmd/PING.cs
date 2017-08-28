@@ -14,7 +14,7 @@ namespace ExpressService.Socket.Cmd
         {
             try
             {
-                var gpsinfo = Encoding.UTF8.GetString(requestInfo.Body, 1, requestInfo.Body.Length - 1);
+                var gpsinfo = Encoding.UTF8.GetString(requestInfo.Body, 1, requestInfo.Body.Length - 1 - 8);
                 Console.WriteLine(string.Format("命令:{0} 经纬度:{1}", requestInfo.Key, gpsinfo));
 
                 if (SessionCaches.SCSessionDic.ContainsKey(session.SessionID))

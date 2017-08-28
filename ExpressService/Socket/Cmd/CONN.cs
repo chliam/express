@@ -14,7 +14,7 @@ namespace ExpressService.Socket
         {
             try
             {
-                var scid = Encoding.UTF8.GetString(requestInfo.Body);
+                var scid = Encoding.UTF8.GetString(requestInfo.Body,0, requestInfo.Body.Length-8);
                 Console.WriteLine(string.Format("命令:{0} 柜子编号:{1}", requestInfo.Key, scid));
                 var scinfo = Data.Entities.Instance.scinfoes.FirstOrDefault(p => p.id == scid);
                 SessionCaches.SCSessionDic[session.SessionID] = scid;

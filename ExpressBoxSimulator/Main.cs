@@ -65,11 +65,13 @@ namespace ExpressBoxSimulator
                 var cmd = Encoding.UTF8.GetBytes("CONN");
                 var len = new byte[] { 0x08 };
                 var body = Encoding.UTF8.GetBytes(txtBoxID.Text.Trim());
-                var sendData = new byte[type.Length + cmd.Length + len.Length + body.Length];
+                var sign = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+                var sendData = new byte[type.Length + cmd.Length + len.Length + body.Length + sign.Length];
                 Array.ConstrainedCopy(type, 0, sendData, 0, type.Length);
                 Array.ConstrainedCopy(cmd, 0, sendData, type.Length, cmd.Length);
                 Array.ConstrainedCopy(len, 0, sendData, type.Length + cmd.Length, len.Length);
                 Array.ConstrainedCopy(body, 0, sendData, type.Length + cmd.Length + len.Length, body.Length);
+                Array.ConstrainedCopy(sign, 0, sendData, type.Length + cmd.Length + len.Length + body.Length, sign.Length);
                 socket.Send(sendData);
             }
             catch (Exception es)
@@ -147,13 +149,15 @@ namespace ExpressBoxSimulator
                         default:
                             break;
                     }
-                    var sendData = new byte[type.Length + cmd.Length + len.Length + reason.Length + status.Length + body.Length];
+                    var sign = new byte[] { 0x00,0x00,0x00,0x00, 0x00, 0x00, 0x00, 0x00 };
+                    var sendData = new byte[type.Length + cmd.Length + len.Length + reason.Length + status.Length + body.Length + sign.Length];
                     Array.ConstrainedCopy(type, 0, sendData, 0, type.Length);
                     Array.ConstrainedCopy(cmd, 0, sendData, type.Length, cmd.Length);
                     Array.ConstrainedCopy(len, 0, sendData, type.Length + cmd.Length, len.Length);
                     Array.ConstrainedCopy(reason, 0, sendData, type.Length + cmd.Length + len.Length, reason.Length);
                     Array.ConstrainedCopy(status, 0, sendData, type.Length + cmd.Length + len.Length + reason.Length, status.Length);
                     Array.ConstrainedCopy(body, 0, sendData, type.Length + cmd.Length + len.Length + reason.Length + status.Length, body.Length);
+                    Array.ConstrainedCopy(sign, 0, sendData, type.Length + cmd.Length + len.Length + reason.Length + status.Length+ body.Length, sign.Length);
                     socket.Send(sendData);
                 }
                 else
@@ -178,12 +182,14 @@ namespace ExpressBoxSimulator
                     var len = new byte[] { 0x18 };
                     var payload = new byte[] { 0x00 };
                     var body = Encoding.UTF8.GetBytes(string.Format("N{0}E{1}",txtLatitude.Value,txtLongitude.Value));
-                    var sendData = new byte[type.Length + cmd.Length + len.Length + payload.Length + body.Length];
+                    var sign = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+                    var sendData = new byte[type.Length + cmd.Length + len.Length + payload.Length + body.Length + sign.Length];
                     Array.ConstrainedCopy(type, 0, sendData, 0, type.Length);
                     Array.ConstrainedCopy(cmd, 0, sendData, type.Length, cmd.Length);
                     Array.ConstrainedCopy(len, 0, sendData, type.Length + cmd.Length, len.Length);
                     Array.ConstrainedCopy(payload, 0, sendData, type.Length + cmd.Length + len.Length, payload.Length);
                     Array.ConstrainedCopy(body, 0, sendData, type.Length + cmd.Length + len.Length + payload.Length, body.Length);
+                    Array.ConstrainedCopy(sign, 0, sendData, type.Length + cmd.Length + len.Length + payload.Length + body.Length, sign.Length);
                     socket.Send(sendData);
                 }
                 else

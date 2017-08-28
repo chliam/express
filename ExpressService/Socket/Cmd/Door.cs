@@ -14,7 +14,7 @@ namespace ExpressService.Socket
         {
             try
             {
-                var expressid = Encoding.UTF8.GetString(requestInfo.Body, 3, requestInfo.Body.Length - 3);
+                var expressid = Encoding.UTF8.GetString(requestInfo.Body, 3, requestInfo.Body.Length - 3-8);
                 Console.WriteLine(string.Format("命令:{0} 快递单号:{1}", requestInfo.Key, expressid));
 
                 var scid = string.Empty;
@@ -75,6 +75,16 @@ namespace ExpressService.Socket
                             session.Send(sendData, 0, sendData.Length);
                             return;
                         }
+                    }
+                    else
+                    {
+                        var sendData = CmdHelper.GenSocketData(new List<byte[]> {
+                            new byte[] { 0x02 },
+                            Encoding.UTF8.GetBytes("NONE"),
+                            new byte[] { 0x00 }
+                        });
+                        session.Send(sendData, 0, sendData.Length);
+                        return;
                     }
                 }
             }
