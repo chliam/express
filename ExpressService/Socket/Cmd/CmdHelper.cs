@@ -31,23 +31,27 @@ namespace ExpressService.Socket
         {
             try
             {
-                var log = new Data.socketlog();
-                log.id = DateTime.Now.Ticks.ToString();
-                log.datetime = DateTime.Now;
-                var clientip = string.Empty;
-                if (session != null && session.RemoteEndPoint != null)
+                var logCmd = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["LogCmd"]);
+                if (logCmd)
                 {
-                    clientip = session.RemoteEndPoint.Address.ToString() + ":" + session.RemoteEndPoint.Port;
-                }
-                log.clientip = clientip;
-                log.cmdtype = cmdtype;
-                log.senddata = ToHexString(data);
-                log.isreq = isreq;
-                ThreadPool.QueueUserWorkItem(new WaitCallback((obj) => {
-                    Data.expressEntities db = new Data.expressEntities();
-                    db.socketlogs.Add((Data.socketlog)obj);
-                    db.SaveChanges();
-                }), log);
+                    var log = new Data.socketlog();
+                    log.id = DateTime.Now.Ticks.ToString();
+                    log.datetime = DateTime.Now;
+                    var clientip = string.Empty;
+                    if (session != null && session.RemoteEndPoint != null)
+                    {
+                        clientip = session.RemoteEndPoint.Address.ToString() + ":" + session.RemoteEndPoint.Port;
+                    }
+                    log.clientip = clientip;
+                    log.cmdtype = cmdtype;
+                    log.senddata = ToHexString(data);
+                    log.isreq = isreq;
+                    ThreadPool.QueueUserWorkItem(new WaitCallback((obj) => {
+                        Data.expressEntities db = new Data.expressEntities();
+                        db.socketlogs.Add((Data.socketlog)obj);
+                        db.SaveChanges();
+                    }), log);
+                }                
             }
             catch (Exception es)
             {
