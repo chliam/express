@@ -72,7 +72,7 @@ namespace ExpressService.Socket
             }
             else
             {
-                Console.WriteLine(string.Format("Session[{ 0}] Closed!", session.SessionID));
+                Console.WriteLine(string.Format("Session[{0}] Closed!", session.SessionID));
             }
             
         }

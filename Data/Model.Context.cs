@@ -33,5 +33,6 @@ namespace Data
         public virtual DbSet<scinfo> scinfoes { get; set; }
         public virtual DbSet<userinfo> userinfoes { get; set; }
         public virtual DbSet<varcode> varcodes { get; set; }
+        public virtual DbSet<socketlog> socketlogs { get; set; }
     }
 }

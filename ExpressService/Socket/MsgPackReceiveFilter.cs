@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ExpressService.Socket
@@ -27,5 +28,6 @@ namespace ExpressService.Socket
         {
             return new BinaryRequestInfo(Encoding.UTF8.GetString(header.Array, header.Offset+1, 4), bodyBuffer.CloneRange(offset, length));
         }
+
     }
 }

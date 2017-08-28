@@ -12,6 +12,7 @@ namespace ExpressService.Socket
     {
         public override void ExecuteCommand(MsgPackSession session, BinaryRequestInfo requestInfo)
         {
+            CmdHelper.GenSocketLog(session, requestInfo.Key, requestInfo.Body);
             try
             {
                 var scid = Encoding.UTF8.GetString(requestInfo.Body,0, requestInfo.Body.Length-8);

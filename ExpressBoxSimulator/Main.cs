@@ -55,9 +55,10 @@ namespace ExpressBoxSimulator
                     MessageBox.Show("设备标识必须为8位！");
                     return;
                 }
-                if (socket.Connected)
+                if (_socket != null)
                 {
-                    socket.Close();
+                    _socket.Shutdown(SocketShutdown.Both);
+                    _socket.Close();
                     _socket = null;
                 }
                 socket.Connect(txtServer.Text.Trim(), (int)txtPort.Value);

@@ -175,9 +175,10 @@
             // 
             this.cmbReason.FormattingEnabled = true;
             this.cmbReason.Items.AddRange(new object[] {
-            "未知",
-            "放件",
-            "取件"});
+            "未知原因",
+            "尝试放件",
+            "完成放件",
+            "完成取件"});
             this.cmbReason.Location = new System.Drawing.Point(63, 59);
             this.cmbReason.Name = "cmbReason";
             this.cmbReason.Size = new System.Drawing.Size(92, 20);

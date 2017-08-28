@@ -12,11 +12,11 @@ namespace ExpressService.Socket.Cmd
     {
         public override void ExecuteCommand(MsgPackSession session, BinaryRequestInfo requestInfo)
         {
+            CmdHelper.GenSocketLog(session, requestInfo.Key, requestInfo.Body);
             try
             {
                 var gpsinfo = Encoding.UTF8.GetString(requestInfo.Body, 1, requestInfo.Body.Length - 1 - 8);
                 Console.WriteLine(string.Format("命令:{0} 经纬度:{1}", requestInfo.Key, gpsinfo));
-
                 if (SessionCaches.SCSessionDic.ContainsKey(session.SessionID))
                 {
                     var scid = SessionCaches.SCSessionDic[session.SessionID];

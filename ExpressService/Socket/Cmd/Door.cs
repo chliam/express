@@ -12,6 +12,7 @@ namespace ExpressService.Socket
     {
         public override void ExecuteCommand(MsgPackSession session, BinaryRequestInfo requestInfo)
         {
+            CmdHelper.GenSocketLog(session, requestInfo.Key, requestInfo.Body);
             try
             {
                 var expressid = Encoding.UTF8.GetString(requestInfo.Body, 3, requestInfo.Body.Length - 3-8);
@@ -28,8 +29,8 @@ namespace ExpressService.Socket
                 {
                     var sendData = CmdHelper.GenSocketData(new List<byte[]> {
                     new byte[] { 0x02 },
-                    Encoding.UTF8.GetBytes("NONE"),
-                    new byte[] { 0x00 }
+                    Encoding.UTF8.GetBytes("DOOR"),
+                    new byte[] { 0x01 }
                 });
                     session.Send(sendData, 0, sendData.Length);
                 }
@@ -37,13 +38,8 @@ namespace ExpressService.Socket
                 {
                     var reason = (int)requestInfo.Body[0];
                     var status = (int)requestInfo.Body[1];
-                    if (reason == 1)
-                    {
-                        express.intime = DateTime.Now;
-                        express.state = "1";
-                        express.scid = scid;
-                        express.qrcode = string.Format("{0}:{1}#", expressid, scid);
-                        Data.Entities.Instance.SaveChanges();
+                    if (reason == 1) //快递员尝试放件
+                    {                      
                         var sendData = CmdHelper.GenSocketData(new List<byte[]> {
                         new byte[] { 0x02 },
                         Encoding.UTF8.GetBytes("DOOR"),
@@ -51,7 +47,34 @@ namespace ExpressService.Socket
                     });
                         session.Send(sendData, 0, sendData.Length);
                     }
-                    else if (reason == 2)
+                    else if (reason == 2) //快递员完成放件
+                    {
+                        if (!string.IsNullOrEmpty(express.scid) && scid == express.scid)
+                        {
+                            express.intime = DateTime.Now;
+                            express.state = "1";
+                            express.scid = scid;
+                            express.qrcode = string.Format("{0}:{1}#", expressid, scid); //TODO:推送给用户
+                            Data.Entities.Instance.SaveChanges();                          
+                            var sendData = CmdHelper.GenSocketData(new List<byte[]> {
+                            new byte[] { 0x02 },
+                            Encoding.UTF8.GetBytes("DOOR"),
+                            new byte[] { 0x00 }
+                        });
+                            session.Send(sendData, 0, sendData.Length);
+                        }
+                        else
+                        {
+                            var sendData = CmdHelper.GenSocketData(new List<byte[]> {
+                            new byte[] { 0x02 },
+                            Encoding.UTF8.GetBytes("DOOR"),
+                            new byte[] { 0x01 }
+                        });
+                            session.Send(sendData, 0, sendData.Length);
+                            return;
+                        }
+                    }
+                    else if (reason == 3) //APP用户完成去件
                     {
                         if (!string.IsNullOrEmpty(express.scid) && scid == express.scid)
                         {
@@ -69,8 +92,8 @@ namespace ExpressService.Socket
                         {
                             var sendData = CmdHelper.GenSocketData(new List<byte[]> {
                             new byte[] { 0x02 },
-                            Encoding.UTF8.GetBytes("NONE"),
-                            new byte[] { 0x00 }
+                            Encoding.UTF8.GetBytes("DOOR"),
+                            new byte[] { 0x01 }
                         });
                             session.Send(sendData, 0, sendData.Length);
                             return;
@@ -80,8 +103,8 @@ namespace ExpressService.Socket
                     {
                         var sendData = CmdHelper.GenSocketData(new List<byte[]> {
                             new byte[] { 0x02 },
-                            Encoding.UTF8.GetBytes("NONE"),
-                            new byte[] { 0x00 }
+                            Encoding.UTF8.GetBytes("DOOR"),
+                            new byte[] { 0x01 }
                         });
                         session.Send(sendData, 0, sendData.Length);
                         return;

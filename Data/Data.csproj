@@ -97,6 +97,9 @@
     <Compile Include="scinfo.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="socketlog.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="userinfo.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
