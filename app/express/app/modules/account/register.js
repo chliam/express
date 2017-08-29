@@ -20,7 +20,7 @@ import MomEnv from './../config/Environment';
 import Container from './../shared/Container';
 let {width, height} = Dimensions.get('window');
 
-export default class login extends Component{
+export default class register extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -38,18 +38,19 @@ export default class login extends Component{
 
     render() {
         let{telephone,password,agree} = this.state;
+        let{navigator,forgetPassword} = this.props;
         return (
           <Container>
             <View style={{alignSelf:'stretch',height:48,alignItems:'center',justifyContent:'center' }}>
-                <Text style={{color:'#333',fontSize:20,fontWeight: 'bold' }}>{'登录'}</Text>
+                <Text style={{color:'#333',fontSize:20,fontWeight: 'bold' }}>{forgetPassword?'忘记密码':'用户注册'}</Text>
             </View>
             <Image style={{flex:1,alignSelf:'stretch'}} resizeMode="stretch" source={require('./../../../assets/ad5.png')}/>
             <View style={{flex:2,alignSelf:'stretch',alignItems:'center',justifyContent:'center'}}>
                 <View style={{alignSelf:'stretch',flex:1}}>
                 </View>
-                <View style={{alignSelf:'stretch',height:120,backgroundColor:'#fff'}}>
+                <View style={{alignSelf:'stretch',height:240,backgroundColor:'#fff'}}>
                    <View style={{flexDirection: 'row',flex:1,alignItems:'center',justifyContent:'flex-start'}}>
-                      <Image resizeMode="cover" source={require('./../../../assets/head.png')} style={{width:18,height:18,marginLeft:10,marginRight:10,tintColor:'#ccc'}} />
+                      <Text style={{fontSize:16,marginLeft:10,width:80}}>{'手机号码'}</Text>
                       <TextInput 
                       style={{flex:1,fontSize:18}} 
                       underlineColorAndroid="transparent" 
@@ -63,11 +64,39 @@ export default class login extends Component{
                    <View style={{alignSelf:'stretch',height:1,backgroundColor:'#f2f2f2'}}>
                    </View>
                    <View style={{flexDirection: 'row',flex:1,alignItems:'center',justifyContent:'flex-start'}}>
-                      <Image resizeMode="cover" source={require('./../../../assets/lock.png')} style={{width:18,height:18,marginLeft:10,marginRight:10,tintColor:'#ccc'}} />
+                      <Text style={{fontSize:16,marginLeft:10,width:80}}>{'短信验证码'}</Text>
+                      <TextInput 
+                      style={{flex:1,fontSize:18}} 
+                      underlineColorAndroid="transparent" 
+                      placeholder='请输入短信验证码' 
+                      placeholderTextColor='#ddd' 
+                      secureTextEntry={true} 
+                      value={password}
+                      onChangeText={(text) => {this.setState({password:text})}}    
+                      />
+                   </View>
+                   <View style={{alignSelf:'stretch',height:1,backgroundColor:'#f2f2f2'}}>
+                   </View>
+                      <View style={{flexDirection: 'row',flex:1,alignItems:'center',justifyContent:'flex-start'}}>
+                      <Text style={{fontSize:16,marginLeft:10,width:80}}>{forgetPassword?'新密码':'密码'}</Text>
                       <TextInput 
                       style={{flex:1,fontSize:18}} 
                       underlineColorAndroid="transparent" 
                       placeholder='请输入密码' 
+                      placeholderTextColor='#ddd' 
+                      secureTextEntry={true} 
+                      value={password}
+                      onChangeText={(text) => {this.setState({password:text})}}    
+                      />
+                   </View>
+                   <View style={{alignSelf:'stretch',height:1,backgroundColor:'#f2f2f2'}}>
+                   </View>
+                      <View style={{flexDirection: 'row',flex:1,alignItems:'center',justifyContent:'flex-start'}}>
+                      <Text style={{fontSize:16,marginLeft:10,width:80}}>{forgetPassword?'新密码确认':'密码确认'}</Text>
+                      <TextInput 
+                      style={{flex:1,fontSize:18}} 
+                      underlineColorAndroid="transparent" 
+                      placeholder='请再次输入密码' 
                       placeholderTextColor='#ddd' 
                       secureTextEntry={true} 
                       value={password}
@@ -89,22 +118,13 @@ export default class login extends Component{
                 <View style={{alignSelf:'stretch',flex:3,alignItems:'center',justifyContent:'center'}}>
                     <View style={{backgroundColor:'#008cd3',height:60,width:0.8*width,borderRadius:5,alignItems:'center',justifyContent:'center'}}>
                           <TouchableOpacity onPress={()=>{this.props.navigator.replace({id:'main'})}}>
-                              <Text style={{color:'#fff',fontSize:18 }}>{'登 录'}</Text>
+                              <Text style={{color:'#fff',fontSize:18 }}>{forgetPassword?'重置密码':'注 册'}</Text>
                           </TouchableOpacity>
-                    </View>
-                    <View style={{flexDirection: 'row',height:60,width:0.8*width,alignItems:'center',justifyContent:'space-between'}}>
-                         <TouchableOpacity onPress={()=>{this.props.navigator.push({id:'register',forgetPassword:false})}}>
-                           <Text style={{fontSize:16,textDecorationLine:'underline'}}>{'我要注册'}</Text>
-                         </TouchableOpacity>
-                         <TouchableOpacity onPress={()=>{this.props.navigator.push({id:'register',forgetPassword:true})}}>
-                           <Text style={{fontSize:16,textDecorationLine:'underline'}}>{'忘记密码'}</Text>
-                         </TouchableOpacity>
                     </View>
                 </View>
                  <View style={{alignSelf:'stretch',flex:1}}>
                 </View>
-            </View>
-                   
+            </View>                   
           </Container>
         );
     }

@@ -19,6 +19,7 @@ import {
 
 import MomEnv from './app/modules/config/Environment';
 import Login from './app/modules/account/login';
+import Register from './app/modules/account/register';
 import Main from './app/modules/main';
 
 var lastBackPressed;
@@ -104,7 +105,9 @@ class express extends Component{
   _renderScene(route, nav) {
       switch (route.id) {
       case 'login':
-        return <Login navigator={nav} />;
+          return <Login navigator={nav} />;
+      case 'register':
+          return <Register navigator={nav} forgetPassword={route.forgetPassword}/>;
       case 'main':
         return <Main navigator={nav} />;
       default:
