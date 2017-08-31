@@ -45,6 +45,7 @@ const serializeJSON = function (data) {
 module.exports = {
     BASE_URL: _urls[_platform],
     isDebug: _isDebug,
+    MAIN_COLOR: '#3d92f1', //#008cd3
 
     regPush: function (v) {
         _pushListeners[v.name] = v;

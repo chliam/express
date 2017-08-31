@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   Navigator,
   BackAndroid,
   Platform,
@@ -34,7 +35,14 @@ export default class mine extends Component{
     render() {
         return (
           <Container>
-              <Text>{'mine'}</Text>
+              <View style={{flex:1,backgroundColor:MomEnv.MAIN_COLOR,alignItems:'center',justifyContent:'center'}}>
+                  <View style={{width:90,height:90,borderRadius:45,backgroundColor:'#fff',overflow :'hidden',alignItems:'center',justifyContent:'center'}}>
+                     <Image resizeMode="cover" source={require('./../../../assets/userhead.png')} style={{width:60,height:60}} />
+                  </View>               
+              </View>
+              <View style={{flex:2}}>                  
+              </View>
+              <View style={{height:60}}></View>
           </Container>
         );
     }

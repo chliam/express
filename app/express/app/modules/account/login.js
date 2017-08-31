@@ -18,6 +18,7 @@ import {
 
 import MomEnv from './../config/Environment';
 import Container from './../shared/Container';
+import Advertisement from './../shared/Advertisement';
 let {width, height} = Dimensions.get('window');
 
 export default class login extends Component{
@@ -43,7 +44,7 @@ export default class login extends Component{
             <View style={{alignSelf:'stretch',height:48,alignItems:'center',justifyContent:'center' }}>
                 <Text style={{color:'#333',fontSize:20,fontWeight: 'bold' }}>{'登录'}</Text>
             </View>
-            <Image style={{flex:1,alignSelf:'stretch'}} resizeMode="stretch" source={require('./../../../assets/ad5.png')}/>
+            <Advertisement/>
             <View style={{flex:2,alignSelf:'stretch',alignItems:'center',justifyContent:'center'}}>
                 <View style={{alignSelf:'stretch',flex:1}}>
                 </View>
@@ -77,8 +78,8 @@ export default class login extends Component{
                 </View>
                 <View style={{flexDirection: 'row',height:60,alignSelf:'stretch',alignItems:'center',justifyContent:'flex-start'}}>
                          <View style={{width:18,height:18,marginLeft:10,marginRight:10,borderRadius:3,borderWidth:1,alignItems:'center',justifyContent:'center',
-                             ...agree?{borderColor:'#008cd3'}:{borderColor:'#ccc'}}}>
-                              <Text style={{fontSize:12,color:'#008cd3'}}>{agree?'√ ':''}</Text>
+                             ...agree?{borderColor:MomEnv.MAIN_COLOR}:{borderColor:'#ccc'}}}>
+                              <Text style={{fontSize:12,color:MomEnv.MAIN_COLOR}}>{agree?'√ ':''}</Text>
                          </View>
                          <Text style={{fontSize:16 }}>{'同意 '}</Text>
                          <TouchableOpacity onPress={()=>{this.setState({agree:!agree})}}>
@@ -86,8 +87,8 @@ export default class login extends Component{
                          </TouchableOpacity>
                          
                 </View>
-                <View style={{alignSelf:'stretch',flex:3,alignItems:'center',justifyContent:'center'}}>
-                    <View style={{backgroundColor:'#008cd3',height:60,width:0.8*width,borderRadius:5,alignItems:'center',justifyContent:'center'}}>
+                <View style={{alignSelf:'stretch',flex:4,alignItems:'center',justifyContent:'center'}}>
+                    <View style={{backgroundColor:MomEnv.MAIN_COLOR,height:60,width:0.8*width,borderRadius:5,alignItems:'center',justifyContent:'center'}}>
                           <TouchableOpacity onPress={()=>{this.props.navigator.replace({id:'main'})}}>
                               <Text style={{color:'#fff',fontSize:18 }}>{'登 录'}</Text>
                           </TouchableOpacity>

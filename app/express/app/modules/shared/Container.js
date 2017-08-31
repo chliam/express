@@ -20,12 +20,9 @@ const {width, height} = Dimensions.get('window');
 export default class Container extends Component{
   render(){
     return (
-      <View>
-        
-        <View style={[{width: width, height: height,backgroundColor:'#efefef'}, this.props.style]}>
+      <View style={[{width:width, height: height,backgroundColor:'#efefef'}, this.props.style]}>
            {this.props.children}
-        </View>
-     </View>
+      </View>
     );
   }
 }

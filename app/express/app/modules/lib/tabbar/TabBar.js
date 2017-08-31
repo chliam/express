@@ -14,6 +14,7 @@ import {
 import React, {Component} from 'react'
 
 import TabBarItem from './TabBarItem';
+import MomEnv from './../../config/Environment';
 
 export default class TabBar extends Component {
     static Item = TabBarItem;
@@ -22,7 +23,7 @@ export default class TabBar extends Component {
         defaultPage: 0,
         navFontSize: 10,
         navTextColor: '#999999',
-        navTextColorSelected: '#6aacee',
+        navTextColorSelected: MomEnv.MAIN_COLOR,
     };
 
     static propTypes = {
