@@ -22,7 +22,7 @@ namespace ExpressApi.Controllers
             }
             else if (user.password != model.password)
             {
-                return Ok(new ResultModel() { status = "failure", message = "密码错误！" });
+                return Ok(new ResultModel() { status = "failure", message = "手机号或密码错误！" });
             }
             return Ok(new ResultModel() { status = "success" });
         }

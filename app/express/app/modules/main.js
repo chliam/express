@@ -8,7 +8,7 @@ import {
   Navigator,
   BackAndroid,
   Platform,
-  ToastAndroid
+  TouchableOpacity
 } from 'react-native';
 
 
@@ -23,6 +23,7 @@ export default class main extends Component{
     constructor(props){
         super(props);
         this.state = {
+            scid:''
         };
     }
 
@@ -61,48 +62,54 @@ export default class main extends Component{
         }
     }
 
+    _gotoPickUp(scid){
+        this.setState({selectedTab:'pickup',scid:scid});
+        this.refs.tabbar.update(1);
+    }
+
     render(){
-    return (
-      <View style={{flex:1}}>
-        <TabBar defaultPage={1} ref='tabbar'>
-          <TabBar.Item
-            title={'首页'}
-            icon={require('./../../assets/tabHome.png')}
-            selected={this.state.selectedTab === 'home'}
-            onPress={() => {
-              this.setState({
-                selectedTab: 'home',
-              });
-            }}
-          >
-            <Home />
-          </TabBar.Item>
-          <TabBar.Item
-            title={'取件'}
-            icon={require('./../../assets/tabPickup.png')}
-            selected={this.state.selectedTab === 'pickup'}
-            onPress={() => {
-              this.setState({
-                selectedTab: 'pickup',
-              });
-            }}>
-            <Pickup />
-          </TabBar.Item>
-          <TabBar.Item
-            icon={require('./../../assets/tabMine.png')}
-            title={'我的'}
-            selected={this.state.selectedTab === 'mine'}
-            onPress={() => {
-              this.setState({
-                selectedTab: 'mine',
-              });
-            }}>
-            <Mine />
-          </TabBar.Item>
-        </TabBar>
-      </View>
-    );
-  }
+        let {scid} = this.state;
+        return (
+          <View style={{flex:1}}>
+            <TabBar defaultPage={0} ref='tabbar'>
+              <TabBar.Item
+                title={'首页'}
+                icon={require('./../../assets/tabHome.png')}
+                selected={this.state.selectedTab === 'home'}
+                onPress={() => {
+                  this.setState({
+                    selectedTab: 'home',
+                  });
+                }}
+              >
+                <Home navigator={this.props.navigator} gotoPickup={(scid)=>{this._gotoPickUp(scid)}}/>
+              </TabBar.Item>
+              <TabBar.Item
+                title={'取件'}
+                icon={require('./../../assets/tabPickup.png')}
+                selected={this.state.selectedTab === 'pickup'}
+                onPress={() => {
+                  this.setState({
+                    selectedTab: 'pickup',
+                  });
+                }}>
+                <Pickup navigator={this.props.navigator} scid={scid}/>
+              </TabBar.Item>
+              <TabBar.Item
+                icon={require('./../../assets/tabMine.png')}
+                title={'我的'}
+                selected={this.state.selectedTab === 'mine'}
+                onPress={() => {
+                  this.setState({
+                    selectedTab: 'mine',
+                  });
+                }}>
+                <Mine navigator={this.props.navigator}/>
+              </TabBar.Item>
+            </TabBar>
+          </View>
+        );
+   }
 }
 
 const styles = StyleSheet.create({

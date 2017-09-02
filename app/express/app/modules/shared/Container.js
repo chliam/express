@@ -20,7 +20,8 @@ const {width, height} = Dimensions.get('window');
 export default class Container extends Component{
   render(){
     return (
-      <View style={[{width:width, height: height,backgroundColor:'#efefef'}, this.props.style]}>
+      <View style={[{width:width, height: height,backgroundColor:'#ececec'}, this.props.style]}>
+            <StatusBar hidden={false} />
            {this.props.children}
       </View>
     );

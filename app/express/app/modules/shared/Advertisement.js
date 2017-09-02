@@ -14,7 +14,7 @@ const {width, height} = Dimensions.get('window');
 export default class Advertisement extends Component{
     render(){
         return (
-          <Image style={[{flex:1,width:width},this.props.style]} resizeMode="stretch" source={require('./../../../assets/ad9.png')}/>
+          <Image style={[{flex:1,width:width},this.props.style]} resizeMode="stretch" source={require('./../../../assets/ad14.png')}/>
     );
 }
 }

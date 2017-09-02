@@ -12,7 +12,7 @@ import MomNotification from './MomNotification';
 
 const _urls = {
     production: 'https://momiu-pro.azurewebsites.net/',
-    development: 'http://dev.myownmed.com:50206/',
+    development:'http://192.168.1.90:28862/',
 };
 
 
@@ -45,7 +45,7 @@ const serializeJSON = function (data) {
 module.exports = {
     BASE_URL: _urls[_platform],
     isDebug: _isDebug,
-    MAIN_COLOR: '#3d92f1', //#008cd3
+    MAIN_COLOR: '#55a2d8', //'#3d92f1', //#008cd3
 
     regPush: function (v) {
         _pushListeners[v.name] = v;
