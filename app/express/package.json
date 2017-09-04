@@ -1,28 +1,31 @@
 {
-	"name": "express",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
-	},
-	"dependencies": {
-		"ac-qrcode": "^1.0.1",
-		"react": "16.0.0-alpha.6",
-		"react-native": "0.43.4",
-		"react-native-camera": "^0.10.0",
-		"react-native-easy-toast": "^1.0.6",
-		"react-native-image-picker": "^0.26.4",
-		"react-native-modal-dropdown": "^0.5.0",
-		"react-native-qrcode": "^0.2.6"
-	},
-	"devDependencies": {
-		"babel-jest": "20.0.3",
-		"babel-preset-react-native": "2.0.1",
-		"jest": "20.0.4",
-		"react-test-renderer": "16.0.0-alpha.6"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+  "name": "express",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "configureJPush": "node node_modules/jpush-react-native/JPushConfiguration.js",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "ac-qrcode": "^1.0.1",
+    "jcore-react-native": "^1.1.8-beta",
+    "jpush-react-native": "^2.0.6",
+    "react": "16.0.0-alpha.6",
+    "react-native": "0.43.4",
+    "react-native-camera": "^0.10.0",
+    "react-native-easy-toast": "^1.0.6",
+    "react-native-image-picker": "^0.26.4",
+    "react-native-modal-dropdown": "^0.5.0",
+    "react-native-qrcode": "^0.2.6"
+  },
+  "devDependencies": {
+    "babel-jest": "20.0.3",
+    "babel-preset-react-native": "2.0.1",
+    "jest": "20.0.4",
+    "react-test-renderer": "16.0.0-alpha.6"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
 }
