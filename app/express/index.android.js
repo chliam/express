@@ -21,6 +21,7 @@ import MomEnv from './app/modules/config/Environment';
 import Login from './app/modules/account/login';
 import Register from './app/modules/account/register';
 import Main from './app/modules/main';
+import JPushModule from 'jpush-react-native';
 
 var lastBackPressed;
 
@@ -52,7 +53,8 @@ class express extends Component{
   }
 
   componentDidMount() {
-    AppState.addEventListener('change', this._handleAppStateChange);
+      AppState.addEventListener('change', this._handleAppStateChange);
+      JPushModule.initPush();
     //this._loadInitialState().done();
   }
 

@@ -104,6 +104,10 @@ namespace ExpressBoxSimulator
                     {
                         reason = new byte[] { 0x02 };
                     }
+                    else if (cmbReason.SelectedIndex == 3)
+                    {
+                        reason = new byte[] { 0x03 };
+                    }
                     var status = new byte[] { 0x00, 0x0B };
                     if (cmbStatus.SelectedIndex == 1)
                     {

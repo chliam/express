@@ -53,11 +53,15 @@ export default class setting extends Component{
                       </View>
                   </TouchableOpacity> 
                   <View style={{flex:1,alignItems:'center',marginTop:40}}>
-                      <View style={{backgroundColor:MomEnv.MAIN_COLOR,height:40,width:0.8*width,borderRadius:5,alignItems:'center',justifyContent:'center'}}>
-                          <TouchableOpacity onPress={()=>{this.props.navigator.replace({id:'login'})}}>
-                              <Text style={{color:'#fff',fontSize:16 }}>{'退出登录'}</Text>
+                      
+                          <TouchableOpacity onPress={()=>{
+                              MomEnv.saveProfile(null);
+                              this.props.navigator.replace({id:'login'});
+                            }}>
+                              <View style={{backgroundColor:MomEnv.MAIN_COLOR,height:40,width:0.8*width,borderRadius:5,alignItems:'center',justifyContent:'center'}}>
+                                 <Text style={{color:'#fff',fontSize:16 }}>{'退出登录'}</Text>
+                              </View>
                           </TouchableOpacity>
-                      </View>
                   </View>
               </View>              
           </Container>

@@ -12,12 +12,12 @@ import MomNotification from './MomNotification';
 
 
 const _urls = {
-    production: 'https://momiu-pro.azurewebsites.net/',
+    production: 'http://116.62.146.2/',
     development:'http://192.168.1.90:28862/',
 };
 
 
-const _platform = 'development';
+const _platform = 'production';
 const _isDebug = false;
 var _navigator;
 var _selectedDay = null;
@@ -267,8 +267,7 @@ module.exports = {
         if (now - _lastNetwork > 1000 * 5) {
             _networkError = true;
             _lastNetwork = new Date();
-
-            Alert.alert('ç½‘ç»œé”™è¯¯!');
+            //Alert.alert('ÍøÂç´íÎó¯¯!');
         }
         if (callback) callback(null);
     },

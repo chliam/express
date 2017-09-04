@@ -49,7 +49,8 @@ export default class feedback extends Component{
                       if(responseData){
                           if(responseData.status=="success"){
                               this.refs.toast.show(' 提交成功，感谢你的反馈！ ',3000); 
-                              this.props.navigator.pop();
+                              this.setState({content:""});
+                              //this.props.navigator.pop();
                           }else{
                               this.refs.toast.show(responseData.message,3000);                                
                           }

@@ -96,9 +96,9 @@
             <PropertyRef Name="telephone" />
           </Key>
           <Property Name="telephone" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="pic1" Type="text" Nullable="false" />
-          <Property Name="pic2" Type="text" Nullable="false" />
-          <Property Name="pic3" Type="text" Nullable="false" />
+          <Property Name="pic1" Type="longtext" Nullable="false" />
+          <Property Name="pic2" Type="longtext" Nullable="false" />
+          <Property Name="pic3" Type="longtext" Nullable="false" />
         </EntityType>
         <EntityType Name="varcode">
           <Key>
@@ -241,9 +241,9 @@
             <PropertyRef Name="telephone" />
           </Key>
           <Property Name="telephone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="pic1" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Name="pic2" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Name="pic3" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="pic1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="pic2" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="pic3" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

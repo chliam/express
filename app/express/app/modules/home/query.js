@@ -128,7 +128,6 @@ export default class query extends Component{
                       underlineColorAndroid="transparent" 
                       placeholder='输入或扫描单号' 
                       placeholderTextColor='#ddd' 
-                      keyboardType='phone-pad' 
                       value={expressid}
                       onChangeText={(text) => {this.setState({expressid:text.replace(/\s/g, '')})}} 
                       />

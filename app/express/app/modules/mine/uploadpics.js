@@ -89,6 +89,8 @@ export default class uploadpics extends Component{
             takePhotoButtonTitle:'拍照',
             chooseFromLibraryButtonTitle:'从手机相册选择',
             cancelButtonTitle:'取消',
+            mediaType:'photo',
+            quality:0.8,
             storageOptions: {
                 skipBackup: true,                
                 path: 'images'
@@ -142,7 +144,7 @@ export default class uploadpics extends Component{
                              {
                                 pic1 && pic1.length>0
                                 ?
-                                (<Image source={{uri:'data:image/jpeg;base64,'+pic1}} resizeMode="cover" style={{width:100,height:100,borderRadius:25}} />)
+                                (<Image source={{uri:'data:image/jpeg;base64,'+pic1}} resizeMode="cover" style={{width:90,height:90,borderRadius:25}} />)
                                 :
                                 (<Text style={{fontSize:10,textAlign:'center'}}>{'点击上传\n身份证正面照片'}</Text>)
                               }
@@ -153,7 +155,7 @@ export default class uploadpics extends Component{
                             {
                                 pic2 && pic2.length>0
                                 ?
-                                (<Image source={{uri:'data:image/jpeg;base64,'+pic2}} resizeMode="cover" style={{width:100,height:100,borderRadius:25}} />)
+                                (<Image source={{uri:'data:image/jpeg;base64,'+pic2}} resizeMode="cover" style={{width:90,height:90,borderRadius:25}} />)
                                 :
                             (<Text style={{fontSize:10,textAlign:'center'}}>{'点击上传\n身份证反面照片'}</Text>)
                             }
@@ -164,7 +166,7 @@ export default class uploadpics extends Component{
                             {
                                 pic3 && pic3.length>0
                                 ?
-                                (<Image source={{uri:'data:image/jpeg;base64,'+pic3}} resizeMode="cover" style={{width:100,height:100,borderRadius:25}} />)
+                                (<Image source={{uri:'data:image/jpeg;base64,'+pic3}} resizeMode="cover" style={{width:90,height:90,borderRadius:25}} />)
                                 :
                                 (<Text style={{fontSize:10,textAlign:'center'}}>{'点击上传\n手持身份证照片'}</Text>)
                             }

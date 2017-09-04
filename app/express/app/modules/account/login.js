@@ -22,6 +22,7 @@ import Advertisement from './../shared/Advertisement';
 import Toast,{DURATION} from 'react-native-easy-toast';
 import Loading from './../shared/Loading';
 import Consent from './consent';
+import JPushModule from 'jpush-react-native';
 
 let {width, height} = Dimensions.get('window');
 
@@ -39,43 +40,48 @@ export default class login extends Component{
     componentWillUnmount() {
     }
 
-    componentDidMount() {
+    componentDidMount() {   
+        MomEnv.getProfile().then((profile) => {
+            if(profile && profile.telephone && profile.telephone.length>0){
+                JPushModule.setTags([profile.telephone], (map) => {});
+                this.props.navigator.replace({id:'main'});
+            }     
+        });
     }
 
     login(){
-        this.props.navigator.replace({id:'main'})
-        MomEnv.saveProfile({"telephone": "13506042224","password":"a123456"});
-        //let{telephone,password} = this.state;
-        //var telReg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
-        //var pwdReg = /^(?![^a-zA-Z]+$)(?!\D+$)/; 
-        //if(!telReg.test(telephone)) { 
-        //    this.refs.toast.show(' 请输入有效的手机号码！ ',3000); 
-        //}
-        //else if(!pwdReg.test(password)) { 
-        //    this.refs.toast.show('密码必须是字母和数字组合，且不能低于6位！',3000); 
-        //} 
-        //else if(password.length<6) { 
-        //    this.refs.toast.show('密码必须是字母和数字组合，且不能低于6位！',3000); 
-        //} 
-        //else {
-        //    this.setState({loading:true});
-        //    let profile = {"telephone": telephone,"password":password};
-        //    MomEnv.callApi('api/WebApi/Login', 
-        //      profile,
-        //      (responseData)=>{
-        //          this.setState({loading:false});
-        //          if(responseData){
-        //              if(responseData.status=="success"){
-        //                  MomEnv.saveProfile(profile);
-        //                  this.props.navigator.replace({id:'main'})
-        //              }else{
-        //                  this.refs.toast.show(responseData.message,3000); 
-        //              }
-        //          }else{
-        //              this.refs.toast.show('网络异常！',3000); 
-        //          }
-        //   });            
-        //} 
+        //this.props.navigator.replace({id:'main'})
+        //MomEnv.saveProfile({"telephone": "13506042224","password":"a123456"});
+        
+        let{telephone,password} = this.state;
+        var telReg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+        var pwdReg = /^(?![^a-zA-Z]+$)(?!\D+$)/; 
+        if(!telReg.test(telephone)) { 
+            this.refs.toast.show(' 请输入有效的手机号码！ ',3000); 
+        }
+        else if(password.length<1) { 
+            this.refs.toast.show('请输入密码！',3000); 
+        } 
+        else {
+            this.setState({loading:true});
+            let profile = {"telephone": telephone,"password":password};
+            MomEnv.callApi('api/WebApi/Login', 
+              profile,
+              (responseData)=>{
+                  this.setState({loading:false});
+                  if(responseData){
+                      if(responseData.status=="success"){
+                          MomEnv.saveProfile(profile);
+                          JPushModule.setTags([telephone], (map) => {});
+                          this.props.navigator.replace({id:'main'});
+                      }else{
+                          this.refs.toast.show(responseData.message,3000); 
+                      }
+                  }else{
+                      this.refs.toast.show('网络异常！',3000); 
+                  }
+           });            
+        } 
     }
 
     render() {

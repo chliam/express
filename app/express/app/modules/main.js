@@ -8,7 +8,8 @@ import {
   Navigator,
   BackAndroid,
   Platform,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 
 
@@ -18,6 +19,7 @@ import TabBar from './lib/tabbar/TabBar';
 import Home from './home/home';
 import Pickup from './pickup/pickup';
 import Mine from './mine/mine';
+import JPushModule from 'jpush-react-native';
 
 export default class main extends Component{
     constructor(props){
@@ -39,6 +41,16 @@ export default class main extends Component{
             notify: this._notify,
             resetCount: this._notify,
             category: -1
+        });
+
+        JPushModule.notifyJSDidLoad((resultCode) => {
+            if (resultCode === 0) {}
+        });
+
+        JPushModule.addReceiveNotificationListener((map) => {
+            Alert.alert("通知",map.alertContent,[{text: '知道了', onPress: () => {}},]);
+            //console.warn("alertContent: " + map.alertContent);
+            //console.warn("extras: " + map.extras);
         });
     }
 
