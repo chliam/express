@@ -39,12 +39,28 @@ namespace ExpressApi.Models
         }
 
         [Serializable]
+        public class FeedbackModel
+        {
+            public string telephone { get; set; }
+            public string feedbacktype { get; set; }
+            public string content { get; set; }
+        }
+
+        [Serializable]
+        public class UserPicModel
+        {
+            public string telephone { get; set; }
+            public string pic1 { get; set; }
+            public string pic2 { get; set; }
+            public string pic3 { get; set; }
+        }
+
+        [Serializable]
         public class ResultModel
         {
             public string status { get; set; }
             public string message { get; set; }
             public object result { get; set; }
-        }
-
+        }      
     }
 }

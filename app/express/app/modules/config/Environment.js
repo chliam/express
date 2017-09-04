@@ -10,6 +10,7 @@ import {
 
 import MomNotification from './MomNotification';
 
+
 const _urls = {
     production: 'https://momiu-pro.azurewebsites.net/',
     development:'http://192.168.1.90:28862/',
@@ -32,6 +33,7 @@ var _pushListeners = {};
 var _notifications = {
     //category: {[badgeCount: 0, messages:[]}
 };
+var _profile = null;
 
 const serializeJSON = function (data) {
     return Object.keys(data).map(function (keyName) {
@@ -45,7 +47,12 @@ const serializeJSON = function (data) {
 module.exports = {
     BASE_URL: _urls[_platform],
     isDebug: _isDebug,
-    MAIN_COLOR: '#55a2d8', //'#3d92f1', //#008cd3
+    MAIN_COLOR: '#f05b48',//'#55a2d8', //'#3d92f1', //#008cd3
+    BG_COLOR:'#fff',
+    BG_COLOR2:'#f5f7fa',  
+    NAVBAR_BG_COLOR: '#262930',
+    NAVBAR_TITLE_COLOR: '#f05b48',
+    TABBAR_BG_COLOR: '#262930',
 
     regPush: function (v) {
         _pushListeners[v.name] = v;
@@ -239,17 +246,30 @@ module.exports = {
         _tokenValid = status;
     },
 
+    saveProfile: function (value) {
+        _profile = value;
+        AsyncStorage.setItem("MOM_APP_PROFILE", JSON.stringify(value)).then (() => {}).done();
+    },
+
+    getProfile: function () {
+        if(_profile){
+           return Promise.resolve(_profile);
+        }else{
+            return AsyncStorage.getItem("MOM_APP_PROFILE").then(function (value) {
+                _profile = JSON.parse(value);
+                return _profile;
+            });
+        }    
+    },
+
     processNetworkError: function(callback) {
         var now = new Date();
         if (now - _lastNetwork > 1000 * 5) {
             _networkError = true;
             _lastNetwork = new Date();
 
-            Alert.alert(
-              Translation.lang().w_networkError
-            );
+            Alert.alert('网络错误!');
         }
-
         if (callback) callback(null);
     },
 
@@ -352,3 +372,6 @@ module.exports = {
    STATUS_BAR_HEIGHT: (Platform.OS === 'ios' ? 20 : Platform.Version <= 19?0: 25),
    NAV_BAR_HEIGHT: (Platform.OS === 'ios' ? 44 : 56),
 }
+
+    var moment = require('moment');
+    module.exports.moment = moment;

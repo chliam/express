@@ -12,12 +12,11 @@ namespace Data
     using System;
     using System.Collections.Generic;
     
-    public partial class logistic
+    public partial class userpic
     {
-        public string id { get; set; }
-        public string companyid { get; set; }
-        public string state { get; set; }
-        public string remark { get; set; }
-        public Nullable<System.DateTime> datetime { get; set; }
+        public string telephone { get; set; }
+        public string pic1 { get; set; }
+        public string pic2 { get; set; }
+        public string pic3 { get; set; }
     }
 }

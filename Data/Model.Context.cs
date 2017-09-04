@@ -34,5 +34,7 @@ namespace Data
         public virtual DbSet<userinfo> userinfoes { get; set; }
         public virtual DbSet<varcode> varcodes { get; set; }
         public virtual DbSet<socketlog> socketlogs { get; set; }
+        public virtual DbSet<feedback> feedbacks { get; set; }
+        public virtual DbSet<userpic> userpics { get; set; }
     }
 }

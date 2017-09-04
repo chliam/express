@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     nav: {
         flexDirection: 'row',
         width: Dimensions.get('window').width,
-        backgroundColor: '#FEFEFE',
+        backgroundColor: MomEnv.TABBAR_BG_COLOR,
     },
     navItem: {
         flex: 1,

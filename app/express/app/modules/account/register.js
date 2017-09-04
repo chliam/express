@@ -21,6 +21,8 @@ import Container from './../shared/Container';
 import Advertisement from './../shared/Advertisement';
 import Toast,{DURATION} from 'react-native-easy-toast';
 import Loading from './../shared/Loading';
+import Nav from './../shared/Nav';
+import Consent from './consent';
 
 let {width, height} = Dimensions.get('window');
 
@@ -76,7 +78,8 @@ export default class register extends Component{
               (responseData)=>{
                   this.setState({loading:false});
                   if(responseData){
-                      if(responseData.status=="success"){                          
+                      if(responseData.status=="success"){  
+                          MomEnv.saveProfile({"telephone":telephone,"password":password});
                           this.props.navigator.replace({id:'main'})
                       }else{
                           this.refs.toast.show(responseData.message,3000); 
@@ -131,14 +134,8 @@ export default class register extends Component{
         let{navigator,forgetPassword} = this.props;
         return (
           <Container>
-            <View style={{flexDirection:'row',alignSelf:'stretch',height:40,alignItems:'center',justifyContent:'space-between' }}>
-                <TouchableOpacity onPress={()=>{this.props.navigator.pop()}} style={{padding:5}}>
-                               <Image resizeMode="contain" source={require('./../../../assets/arrow_left.png')} style={{width:10,height:16,marginLeft:5,marginRight:5,tintColor:'#444'}} />
-                </TouchableOpacity>               
-                <Text style={{color:'#444',fontSize:14,fontWeight: 'bold' }}>{forgetPassword?'忘记密码':'用户注册'}</Text>
-                <View style={{width:30}}></View>
-            </View>
-             <Advertisement/>
+            <Nav title={forgetPassword?'忘记密码':'用户注册'}/>
+            <Advertisement/>
             <View style={{flex:2,alignSelf:'stretch',alignItems:'center',justifyContent:'center'}}>
                 <View style={{alignSelf:'stretch',flex:1}}>
                 </View>
@@ -219,7 +216,12 @@ export default class register extends Component{
                          <TouchableOpacity onPress={()=>{this.setState({agree:!agree})}}>
                              <Text style={{fontSize:14 }}>{'同意 '}</Text>
                          </TouchableOpacity>
-                         <TouchableOpacity onPress={()=>{}}>
+                         <TouchableOpacity onPress={()=>{
+                           this.props.navigator.push({
+                             component: Consent,
+                             passProps: {title:'用户协议'}
+                           });
+                         }}>
                              <Text style={{fontSize:14,textDecorationLine:'underline' }}>{'智能快递柜系统用户协议'}</Text>
                          </TouchableOpacity>
                 </View>

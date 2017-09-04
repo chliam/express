@@ -16,6 +16,8 @@ import {
 import MomEnv from './../config/Environment';
 import Container from './../shared/Container';
 import Advertisement from './../shared/Advertisement';
+import Waiting from './../shared/Waiting';
+import Nav from './../shared/Nav';
 let {width, height} = Dimensions.get('window');
 
 export default class setting extends Component{
@@ -25,34 +27,26 @@ export default class setting extends Component{
         };
     }
 
-    componentWillMount() {
-    }
-
-    componentWillUnmount() {
-    }
-
-    componentDidMount() {
+    gotoWaiting(title){
+        this.props.navigator.push({
+            component: Waiting,
+            passProps: {title:title}
+        });
     }
 
     render() {
         return (
           <Container>
-             <View style={{flexDirection:'row',alignSelf:'stretch',height:40,alignItems:'center',justifyContent:'space-between' }}>
-                     <TouchableOpacity onPress={()=>{this.props.navigator.pop()}} style={{padding:5}}>
-                                    <Image resizeMode="contain" source={require('./../../../assets/arrow_left.png')} style={{width:10,height:16,marginLeft:5,marginRight:5,tintColor:'#444'}} />
-                     </TouchableOpacity>               
-                     <Text style={{color:'#444',fontSize:14 }}>{this.props.title}</Text>
-                     <View style={{width:30}}></View>
-              </View>
+              <Nav title={this.props.title}/>
               <Advertisement/>
               <View style={{flex:2}}> 
-                   <TouchableOpacity onPress={()=>{}}>
+                   <TouchableOpacity onPress={this.gotoWaiting.bind(this,'修改密码')}>
                       <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:44,borderColor:'#ccc',borderBottomWidth:1,paddingLeft:10,paddingRight:10}}>
                          <Text>{'修改密码'}</Text>
                          <Image resizeMode="contain" source={require('./../../../assets/arrow_left.png')} style={{width:8,height:14,transform:[{ rotateZ: '180deg' }],tintColor:MomEnv.MAIN_COLOR}} />
                       </View>
                   </TouchableOpacity> 
-                  <TouchableOpacity onPress={()=>{}}>
+                  <TouchableOpacity onPress={this.gotoWaiting.bind(this,'消息通知')}>
                       <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:44,borderColor:'#ccc',borderBottomWidth:1,paddingLeft:10,paddingRight:10}}>
                          <Text>{'消息通知'}</Text>
                          <Image resizeMode="contain" source={require('./../../../assets/arrow_left.png')} style={{width:8,height:14,transform:[{ rotateZ: '180deg' }],tintColor:MomEnv.MAIN_COLOR}} />

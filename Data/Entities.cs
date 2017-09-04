@@ -23,7 +23,14 @@ namespace Data
                     _expressEntities = new expressEntities();
                 }
                 return _expressEntities;
+            }
+        }
 
+        public static expressEntities NewInstance
+        {
+            get
+            {
+                return new expressEntities();
             }
         }
     }

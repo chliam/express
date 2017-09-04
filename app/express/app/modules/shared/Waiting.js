@@ -16,6 +16,7 @@ import {
 import MomEnv from './../config/Environment';
 import Container from './../shared/Container';
 import Advertisement from './../shared/Advertisement';
+import Nav from './Nav';
 
 export default class waiting extends Component{
     constructor(props){
@@ -36,13 +37,7 @@ export default class waiting extends Component{
     render() {
         return (
           <Container>
-             <View style={{flexDirection:'row',alignSelf:'stretch',height:40,alignItems:'center',justifyContent:'space-between' }}>
-                     <TouchableOpacity onPress={()=>{this.props.navigator.pop()}} style={{padding:5}}>
-                                    <Image resizeMode="contain" source={require('./../../../assets/arrow_left.png')} style={{width:10,height:16,marginLeft:5,marginRight:5,tintColor:'#444'}} />
-                     </TouchableOpacity>               
-                     <Text style={{color:'#444',fontSize:14 }}>{this.props.title}</Text>
-                     <View style={{width:30}}></View>
-              </View>
+              <Nav title={this.props.title}/>
               <Advertisement/>
               <View style={{flex:2,alignItems:'center',padding:20,backgroundColor:'#fff'}}> 
                   <Text>{'敬请期待...'}</Text>

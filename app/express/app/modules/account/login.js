@@ -21,6 +21,7 @@ import Container from './../shared/Container';
 import Advertisement from './../shared/Advertisement';
 import Toast,{DURATION} from 'react-native-easy-toast';
 import Loading from './../shared/Loading';
+import Consent from './consent';
 
 let {width, height} = Dimensions.get('window');
 
@@ -43,6 +44,7 @@ export default class login extends Component{
 
     login(){
         this.props.navigator.replace({id:'main'})
+        MomEnv.saveProfile({"telephone": "13506042224","password":"a123456"});
         //let{telephone,password} = this.state;
         //var telReg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
         //var pwdReg = /^(?![^a-zA-Z]+$)(?!\D+$)/; 
@@ -57,12 +59,14 @@ export default class login extends Component{
         //} 
         //else {
         //    this.setState({loading:true});
+        //    let profile = {"telephone": telephone,"password":password};
         //    MomEnv.callApi('api/WebApi/Login', 
-        //      {"telephone": telephone,"password":password},
+        //      profile,
         //      (responseData)=>{
         //          this.setState({loading:false});
         //          if(responseData){
         //              if(responseData.status=="success"){
+        //                  MomEnv.saveProfile(profile);
         //                  this.props.navigator.replace({id:'main'})
         //              }else{
         //                  this.refs.toast.show(responseData.message,3000); 
@@ -70,8 +74,7 @@ export default class login extends Component{
         //          }else{
         //              this.refs.toast.show('网络异常！',3000); 
         //          }
-        //   });
-            
+        //   });            
         //} 
     }
 
@@ -79,8 +82,8 @@ export default class login extends Component{
         let{telephone,password,agree,loading} = this.state;
         return (
           <Container>
-            <View style={{alignSelf:'stretch',height:40,alignItems:'center',justifyContent:'center'}}>
-                <Text style={{color:'#444',fontSize:14,fontWeight: 'bold' }}>{'用户登录'}</Text>
+            <View style={{alignSelf:'stretch',height:40,alignItems:'center',justifyContent:'center',backgroundColor:MomEnv.NAVBAR_BG_COLOR}}>
+                <Text style={{color:MomEnv.NAVBAR_TITLE_COLOR,fontSize:16}}>{'用户登录'}</Text>
             </View>
             <Advertisement/>
             <View style={{flex:2,alignSelf:'stretch',alignItems:'center',justifyContent:'center'}}>
@@ -124,7 +127,12 @@ export default class login extends Component{
                          <TouchableOpacity onPress={()=>{this.setState({agree:!agree})}}>
                              <Text style={{fontSize:14 }}>{'同意 '}</Text>
                          </TouchableOpacity>
-                         <TouchableOpacity onPress={()=>{}}>
+                         <TouchableOpacity onPress={()=>{
+                            this.props.navigator.push({
+                              component: Consent,
+                              passProps: {title:'用户协议'}
+                            });
+                         }}>
                              <Text style={{fontSize:14,textDecorationLine:'underline' }}>{'智能快递柜系统用户协议'}</Text>
                          </TouchableOpacity>
                          

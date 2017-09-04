@@ -3014,6 +3014,14 @@ react-native-easy-toast@^1.0.6:
   version "1.0.6"
   resolved "https://registry.npmjs.org/react-native-easy-toast/-/react-native-easy-toast-1.0.6.tgz#e9e2a0c865fcfdb407dbc2341bc3571a7f5da3b5"
 
+react-native-image-picker@^0.26.4:
+  version "0.26.4"
+  resolved "https://registry.npmjs.org/react-native-image-picker/-/react-native-image-picker-0.26.4.tgz#e53b0564bef44cb3c96ff81594e1e874daa1f0b3"
+
+react-native-modal-dropdown@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.npmjs.org/react-native-modal-dropdown/-/react-native-modal-dropdown-0.5.0.tgz#f6c4cd4d077792e56902b43b14d83959f5f40f46"
+
 react-native-qrcode@^0.2.6:
   version "0.2.6"
   resolved "https://registry.npmjs.org/react-native-qrcode/-/react-native-qrcode-0.2.6.tgz#dd92f151c118860092af9fa5bc0995f2f9dddb16"

@@ -63,12 +63,12 @@ class express extends Component{
         nav.pop();
         return true;
      }
-     //×î½ü2ÃëÄÚ°´¹ıback¼ü£¬¿ÉÒÔÍË³öÓ¦ÓÃ¡£
+     //æœ€è¿‘2ç§’å†…æŒ‰è¿‡backé”®ï¼Œå¯ä»¥é€€å‡ºåº”ç”¨ã€‚
      if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
        return false;
      }
      this.lastBackPressed = Date.now();
-     ToastAndroid.show('Press again to exit the application', ToastAndroid.SHORT);
+     ToastAndroid.show('å†æŒ‰ä¸€æ¬¡é€€å‡ºåº”ç”¨', ToastAndroid.SHORT);
      return true;
    };
 

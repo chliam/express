@@ -23,7 +23,7 @@ export default class main extends Component{
     constructor(props){
         super(props);
         this.state = {
-            scid:''
+            expressid:''
         };
     }
 
@@ -62,13 +62,13 @@ export default class main extends Component{
         }
     }
 
-    _gotoPickUp(scid){
-        this.setState({selectedTab:'pickup',scid:scid});
+    _gotoPickUp(expressid){
+        this.setState({selectedTab:'pickup',expressid:expressid});
         this.refs.tabbar.update(1);
     }
 
     render(){
-        let {scid} = this.state;
+        let {expressid} = this.state;
         return (
           <View style={{flex:1}}>
             <TabBar defaultPage={0} ref='tabbar'>
@@ -82,7 +82,7 @@ export default class main extends Component{
                   });
                 }}
               >
-                <Home navigator={this.props.navigator} gotoPickup={(scid)=>{this._gotoPickUp(scid)}}/>
+                <Home navigator={this.props.navigator} gotoPickup={(expressid)=>{this._gotoPickUp(expressid)}}/>
               </TabBar.Item>
               <TabBar.Item
                 title={'取件'}
@@ -93,7 +93,7 @@ export default class main extends Component{
                     selectedTab: 'pickup',
                   });
                 }}>
-                <Pickup navigator={this.props.navigator} scid={scid}/>
+                <Pickup navigator={this.props.navigator} expressid={expressid}/>
               </TabBar.Item>
               <TabBar.Item
                 icon={require('./../../assets/tabMine.png')}

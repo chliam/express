@@ -69,6 +69,9 @@
     <Compile Include="express.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="feedback.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="gps.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -101,6 +104,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="userinfo.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userpic.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="varcode.cs">
