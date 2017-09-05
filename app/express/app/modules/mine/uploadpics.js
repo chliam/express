@@ -135,8 +135,7 @@ export default class uploadpics extends Component{
         }else{
          return (
           <Container>
-              <Nav title={this.props.title}/>
-              <Advertisement/>
+              <Advertisement title={this.props.title}/>
               <View style={{flex:2}}> 
                   <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-around',height:160}}>
                         <TouchableOpacity onPress={this.selectpic.bind(this,1)}>

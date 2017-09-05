@@ -134,8 +134,7 @@ export default class register extends Component{
         let{navigator,forgetPassword} = this.props;
         return (
           <Container>
-            <Nav title={forgetPassword?'忘记密码':'用户注册'}/>
-            <Advertisement/>
+            <Advertisement title={forgetPassword?'忘记密码':'用户注册'}/>
             <View style={{flex:2,alignSelf:'stretch',alignItems:'center',justifyContent:'center'}}>
                 <View style={{alignSelf:'stretch',flex:1}}>
                 </View>

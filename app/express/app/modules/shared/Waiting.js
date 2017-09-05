@@ -37,8 +37,7 @@ export default class waiting extends Component{
     render() {
         return (
           <Container>
-              <Nav title={this.props.title}/>
-              <Advertisement/>
+              <Advertisement title={this.props.title}/>
               <View style={{flex:2,alignItems:'center',padding:20,backgroundColor:'#fff'}}> 
                   <Text>{'敬请期待...'}</Text>
               </View>              

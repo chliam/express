@@ -66,8 +66,7 @@ export default class feedback extends Component{
         let{feedbacktype,content,loading} = this.state;
         return (
           <Container>
-              <Nav title={this.props.title}/>
-              <Advertisement/>
+              <Advertisement title={this.props.title}/>
               <View style={{flex:2}}> 
                   <View style={{flexDirection:'row',alignItems:'center',height:44,borderColor:'#ccc',borderBottomWidth:1,paddingLeft:10,paddingRight:10,backgroundColor:'#fff'}}>
                          <Text style={{marginRight:15}}>{'反馈类型'}</Text>

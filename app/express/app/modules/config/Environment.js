@@ -47,12 +47,12 @@ const serializeJSON = function (data) {
 module.exports = {
     BASE_URL: _urls[_platform],
     isDebug: _isDebug,
-    MAIN_COLOR: '#f05b48',//'#55a2d8', //'#3d92f1', //#008cd3
+    MAIN_COLOR: '#ff6c0a',//'#f05b48',//'#55a2d8', //'#3d92f1', //#008cd3
     BG_COLOR:'#fff',
     BG_COLOR2:'#f5f7fa',  
-    NAVBAR_BG_COLOR: '#262930',
-    NAVBAR_TITLE_COLOR: '#f05b48',
-    TABBAR_BG_COLOR: '#262930',
+    NAVBAR_BG_COLOR: '#282b33',
+    NAVBAR_TITLE_COLOR: '#fff',
+    TABBAR_BG_COLOR: '#282b33',
 
     regPush: function (v) {
         _pushListeners[v.name] = v;
@@ -260,6 +260,16 @@ module.exports = {
                 return _profile;
             });
         }    
+    },
+
+    saveEnablenotifye: function (value) {
+        AsyncStorage.setItem("MOM_APP_ENABLE_NOTIFY", JSON.stringify(value)).then (() => {}).done();
+    },
+
+    getEnablenotifye: function () {
+        return AsyncStorage.getItem("MOM_APP_ENABLE_NOTIFY").then(function (value) {
+            return JSON.parse(value);
+        });
     },
 
     processNetworkError: function(callback) {

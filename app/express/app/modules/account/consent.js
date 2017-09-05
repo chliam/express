@@ -31,7 +31,7 @@ export default class consent extends Component{
         let uri = MomEnv.BASE_URL + 'Consent.html';
         return (
           <Container>
-              <Nav title={this.props.title}/>
+              <Nav title={this.props.title} style={{backgroundColor:MomEnv.NAVBAR_BG_COLOR}}/>
               <WebView
                 ref='webview'
                 automaticallyAdjustContentInsets={true}

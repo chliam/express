@@ -118,8 +118,7 @@ export default class query extends Component{
 
         return (
           <Container>
-              <Nav title={'查件'}/>
-              <Advertisement/>
+              <Advertisement title={'查件'}/>
               <View style={{flex:2,alignSelf:'stretch',alignItems:'center',justifyContent:'flex-start'}}>
                   <View style={{alignSelf:'stretch',height:44,backgroundColor:'#fff'}}>
                    <View style={{flexDirection: 'row',flex:1,alignItems:'center',justifyContent:'flex-start'}}>                      

@@ -44,6 +44,11 @@ export default class login extends Component{
         MomEnv.getProfile().then((profile) => {
             if(profile && profile.telephone && profile.telephone.length>0){
                 JPushModule.setTags([profile.telephone], (map) => {});
+                MomEnv.getEnablenotifye().then((enable) => {
+                    if(enable == false || enable == "false"){
+                        JPushModule.stopPush(); 
+                    }             
+                });
                 this.props.navigator.replace({id:'main'});
             }     
         });
@@ -73,6 +78,11 @@ export default class login extends Component{
                       if(responseData.status=="success"){
                           MomEnv.saveProfile(profile);
                           JPushModule.setTags([telephone], (map) => {});
+                          MomEnv.getEnablenotifye().then((enable) => {
+                              if(enable == false || enable == "false"){
+                                  JPushModule.stopPush(); 
+                              }             
+                          });
                           this.props.navigator.replace({id:'main'});
                       }else{
                           this.refs.toast.show(responseData.message,3000); 
@@ -88,10 +98,7 @@ export default class login extends Component{
         let{telephone,password,agree,loading} = this.state;
         return (
           <Container>
-            <View style={{alignSelf:'stretch',height:40,alignItems:'center',justifyContent:'center',backgroundColor:MomEnv.NAVBAR_BG_COLOR}}>
-                <Text style={{color:MomEnv.NAVBAR_TITLE_COLOR,fontSize:16}}>{'用户登录'}</Text>
-            </View>
-            <Advertisement/>
+            <Advertisement title='用户登录' hideback={true}/>
             <View style={{flex:2,alignSelf:'stretch',alignItems:'center',justifyContent:'center'}}>
                 <View style={{alignSelf:'stretch',flex:1}}>
                 </View>

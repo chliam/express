@@ -89,7 +89,7 @@ export default class home extends Component{
         let {expressid} = this.state;
         return (
           <Container>
-              <Advertisement/>
+              <Advertisement hideback={true}/>
               <View style={{flex:2,alignSelf:'stretch',alignItems:'center',justifyContent:'flex-start'}}>
                  
                  <View style={{alignSelf:'stretch',flex:1,alignItems:'center',justifyContent:'center'}}>

@@ -111,7 +111,7 @@ export default class pickup extends Component{
 
         return (
           <Container>
-                <Advertisement/>
+                <Advertisement hideback={true}/>
                 <View style={{flex:2}}>
                    <View style={{alignSelf:'stretch',height:44,backgroundColor:'#fff'}}>
                      <View style={{flexDirection: 'row',flex:1,alignItems:'center',justifyContent:'flex-start'}}>                      

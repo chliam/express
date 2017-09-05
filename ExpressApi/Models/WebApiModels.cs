@@ -23,6 +23,15 @@ namespace ExpressApi.Models
         }
 
         [Serializable]
+        public class UpdatePasswordModel
+        {
+            public string telephone { get; set; }
+            public string oldpassword { get; set; }
+            public string newpassword { get; set; }
+        }
+
+
+        [Serializable]
         public class GetVerificationCodeModel
         {
             public string telephone { get; set; }

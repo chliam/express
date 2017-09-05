@@ -145,6 +145,38 @@ namespace ExpressApi.Controllers
 
         [ResponseType(typeof(ResultModel))]
         [HttpPost]
+        public IHttpActionResult UpdatePassword(UpdatePasswordModel model)
+        {
+            try
+            {
+                var db = Data.Entities.NewInstance;
+                var user = db.userinfoes.FirstOrDefault(p => p.telephone == model.telephone);
+                if (user == null)
+                {
+                    return Ok(new ResultModel() { status = "failure", message = "该手机号还未注册！" });
+                }
+                else
+                {
+                    if (user.password != model.oldpassword)
+                    {
+                        return Ok(new ResultModel() { status = "failure", message = "旧密码错误！" });
+                    }
+                    else
+                    {
+                        user.password = model.newpassword;
+                        db.SaveChanges();
+                        return Ok(new ResultModel() { status = "success" });
+                    }   
+                }
+            }
+            catch (Exception es)
+            {
+                return Ok(new ResultModel() { status = "failure", message = es.Message });
+            }
+        }
+
+        [ResponseType(typeof(ResultModel))]
+        [HttpPost]
         public IHttpActionResult FindExpress(FindExpressModel model)
         {
             try
