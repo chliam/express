@@ -26,7 +26,7 @@ namespace ExpressService.Socket
                     new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },
                     new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
                  });
-                session.Send(sendData, 0, sendData.Length);
+                CmdHelper.SendData(session, sendData);
             }
             catch (Exception es)
             {
@@ -36,7 +36,7 @@ namespace ExpressService.Socket
                         Encoding.UTF8.GetBytes("ERRO"),
                         new byte[] { 0x00 }
                     });
-                session.Send(sendData, 0, sendData.Length);
+                CmdHelper.SendData(session, sendData);
             }
         }
     }

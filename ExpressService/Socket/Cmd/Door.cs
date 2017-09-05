@@ -30,9 +30,9 @@ namespace ExpressService.Socket
                     var sendData = CmdHelper.GenSocketData(new List<byte[]> {
                     new byte[] { 0x02 },
                     Encoding.UTF8.GetBytes("DOOR"),
-                    new byte[] { 0x01 }
+                    new byte[] { 0x01,0x01 }
                 });
-                    session.Send(sendData, 0, sendData.Length);
+                    CmdHelper.SendData(session, sendData);
                 }
                 else
                 {
@@ -43,9 +43,9 @@ namespace ExpressService.Socket
                         var sendData = CmdHelper.GenSocketData(new List<byte[]> {
                         new byte[] { 0x02 },
                         Encoding.UTF8.GetBytes("DOOR"),
-                        new byte[] { 0x00 }
+                        new byte[] { 0x01,0x00 }
                     });
-                        session.Send(sendData, 0, sendData.Length);
+                        CmdHelper.SendData(session, sendData);
                     }
                     else if (reason == 2) //快递员完成放件
                     {
@@ -60,18 +60,18 @@ namespace ExpressService.Socket
                             var sendData = CmdHelper.GenSocketData(new List<byte[]> {
                             new byte[] { 0x02 },
                             Encoding.UTF8.GetBytes("DOOR"),
-                            new byte[] { 0x00 }
+                            new byte[] { 0x01,0x00 }
                         });
-                            session.Send(sendData, 0, sendData.Length);
+                            CmdHelper.SendData(session, sendData);
                         }
                         else
                         {
                             var sendData = CmdHelper.GenSocketData(new List<byte[]> {
                             new byte[] { 0x02 },
                             Encoding.UTF8.GetBytes("DOOR"),
-                            new byte[] { 0x01 }
+                            new byte[] { 0x01,0x01 }
                         });
-                            session.Send(sendData, 0, sendData.Length);
+                            CmdHelper.SendData(session, sendData);
                             return;
                         }
                     }
@@ -85,18 +85,18 @@ namespace ExpressService.Socket
                             var sendData = CmdHelper.GenSocketData(new List<byte[]> {
                             new byte[] { 0x02 },
                             Encoding.UTF8.GetBytes("DOOR"),
-                            new byte[] { 0x00 }
+                            new byte[] { 0x01,0x00 }
                         });
-                            session.Send(sendData, 0, sendData.Length);
+                            CmdHelper.SendData(session, sendData);
                         }
                         else
                         {
                             var sendData = CmdHelper.GenSocketData(new List<byte[]> {
                             new byte[] { 0x02 },
                             Encoding.UTF8.GetBytes("DOOR"),
-                            new byte[] { 0x01 }
+                            new byte[] { 0x01, 0x01 }
                         });
-                            session.Send(sendData, 0, sendData.Length);
+                            CmdHelper.SendData(session, sendData);
                             return;
                         }
                     }
@@ -105,9 +105,9 @@ namespace ExpressService.Socket
                         var sendData = CmdHelper.GenSocketData(new List<byte[]> {
                             new byte[] { 0x02 },
                             Encoding.UTF8.GetBytes("DOOR"),
-                            new byte[] { 0x01 }
+                            new byte[] { 0x01, 0x01 }
                         });
-                        session.Send(sendData, 0, sendData.Length);
+                        CmdHelper.SendData(session, sendData);
                         return;
                     }
                 }
@@ -118,9 +118,9 @@ namespace ExpressService.Socket
                 var sendData = CmdHelper.GenSocketData(new List<byte[]> {
                         new byte[] { 0x02 },
                         Encoding.UTF8.GetBytes("ERRO"),
-                        new byte[] { 0x00 }
+                        new byte[] { 0x01, 0x01 }
                     });
-                session.Send(sendData, 0, sendData.Length);
+                CmdHelper.SendData(session, sendData);
             }                   
         }
     }

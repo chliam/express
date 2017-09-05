@@ -10,6 +10,9 @@ namespace ExpressService.Socket
 {
     public class CmdHelper
     {
+        private static bool logCmd = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["LogCmd"]);
+        private static bool logSendData = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["LogSendData"]);
+
         public static byte[] GenSocketData(IList<byte[]> bytes)
         {
             var dataLenght = 0;
@@ -31,7 +34,6 @@ namespace ExpressService.Socket
         {
             try
             {
-                var logCmd = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["LogCmd"]);
                 if (logCmd)
                 {
                     var log = new Data.socketlog();
@@ -72,6 +74,15 @@ namespace ExpressService.Socket
                 hexString = strB.ToString();
             }
             return hexString;
+        }
+
+        public static void SendData(MsgPackSession session, byte[] data) {
+            if (logSendData) {
+                var sendInfo = "SEND: " + BitConverter.ToString(data);
+                Console.WriteLine(sendInfo);
+                LogHelper.LogInfo(sendInfo);
+            }
+            session.Send(data, 0, data.Length);
         }
     }
 }
