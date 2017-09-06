@@ -219,7 +219,6 @@ namespace ExpressApi.Controllers
             try
             {
                 var db = Data.Entities.NewInstance;
-                var express = db.expresses.FirstOrDefault(p => p.id == model.expressid && p.telephoone == model.telephone);
                 var logistics = db.logistics.FirstOrDefault(p => p.id == model.expressid);
                 var logisticsdetails = db.logisticsdetails.Where(p => p.id == model.expressid).OrderBy(p => p.datetime).ToList();
                 var company = string.Empty;
@@ -227,7 +226,7 @@ namespace ExpressApi.Controllers
                 {
                     company = db.companies.FirstOrDefault(p => p.id == logistics.companyid)?.name;
                 }
-                return Ok(new ResultModel() { status = "success", result = new { express = express, logistics = logistics, company = company, logisticsdetails = logisticsdetails } });
+                return Ok(new ResultModel() { status = "success", result = new { logistics = logistics, company = company, logisticsdetails = logisticsdetails } });
             }
             catch (Exception es)
             {

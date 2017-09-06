@@ -28,7 +28,7 @@ export default class query extends Component{
         this.state = {
             expressid:this.props.expressid||'',
             loading:false,
-            express:null
+            logistics:null
         };
     }
 
@@ -57,11 +57,11 @@ export default class query extends Component{
                       this.setState({loading:false});
                       if(responseData){
                           if(responseData.status=="success"){
-                              if(responseData.result.express){
-                                  this.setState({express:responseData.result});
+                              if(responseData.result.logistics){
+                                  this.setState({logistics:responseData.result});
                               }else{
                                   this.refs.toast.show(' 抱歉，未找到单据！ ',3000); 
-                                  this.setState({express:null});
+                                  this.setState({logistics:null});
                               }
                               
                           }else{
@@ -81,28 +81,28 @@ export default class query extends Component{
     }
 
     render() {
-        let {expressid,loading,express} = this.state;
+        let {expressid,loading,logistics} = this.state;
         let htmls = [];
-        if(express){
-            if(express.express){
+        if(logistics){
+            if(logistics.logistics){
                 let items = [];
                 items.push(
                     <View key={1} style={{flexDirection:'row',alignSelf:'stretch',height:40,alignItems:'center',justifyContent:'space-between',borderBottomWidth:1,borderBottomColor:'#f2f2f2'}}>
                            <Text style={{fontWeight:'bold'}}>{'快递单号'}</Text>
-                           <Text>{express.express.id}</Text>
+                           <Text>{logistics.logistics.id}</Text>
                     </View>);
                 items.push(
                     <View key={2} style={{flexDirection:'row',alignSelf:'stretch',height:40,alignItems:'center',justifyContent:'space-between',borderBottomWidth:1,borderBottomColor:'#f2f2f2'}}>
                            <Text style={{fontWeight:'bold'}}>{'快递公司'}</Text>
-                           <Text>{express.company||''}</Text>
+                           <Text>{logistics.company||''}</Text>
                     </View>);
                 items.push(
                     <View key={3} style={{flexDirection:'row',alignSelf:'stretch',alignItems:'center',justifyContent:'space-between',marginTop:10,marginBottom:3}}>
                            <Text style={{fontWeight:'bold'}}>{'物流详情'}</Text>
                            <Text>{''}</Text>
                     </View>);
-               if(express.logisticsdetails){
-                   express.logisticsdetails.map((item,index)=>{
+               if(logistics.logisticsdetails){
+                   logistics.logisticsdetails.map((item,index)=>{
                        items.push(
                          <View key={index+4} style={{flexDirection:'row',alignSelf:'stretch',marginTop:4,marginBottom:2,alignItems:'center'}}>
                            <Text style={{width:120,fontSize:13}}>{moment(item.datetime).format('YYYY-MM-DD HH:mm')}</Text>
