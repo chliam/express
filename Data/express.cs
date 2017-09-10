@@ -22,5 +22,6 @@ namespace Data
         public string scid { get; set; }
         public Nullable<System.DateTime> outtime { get; set; }
         public string qrcode { get; set; }
+        public string logisticid { get; set; }
     }
 }

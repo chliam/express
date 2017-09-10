@@ -12,14 +12,14 @@ namespace Data
     using System;
     using System.Collections.Generic;
     
-    public partial class userpic
+    public partial class notice
     {
+        public int id { get; set; }
+        public int noticetype { get; set; }
+        public System.DateTime noticetime { get; set; }
+        public string content { get; set; }
         public string telephone { get; set; }
-        public string pic1 { get; set; }
-        public string pic2 { get; set; }
-        public string pic3 { get; set; }
-        public string username { get; set; }
-        public string cardtype { get; set; }
-        public string cardnum { get; set; }
+        public bool isread { get; set; }
+        public Nullable<System.DateTime> readtime { get; set; }
     }
 }

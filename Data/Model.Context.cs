@@ -36,5 +36,6 @@ namespace Data
         public virtual DbSet<socketlog> socketlogs { get; set; }
         public virtual DbSet<feedback> feedbacks { get; set; }
         public virtual DbSet<userpic> userpics { get; set; }
+        public virtual DbSet<notice> notices { get; set; }
     }
 }

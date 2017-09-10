@@ -11,7 +11,8 @@ import {
   Navigator,
   BackAndroid,
   Platform,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 
 
@@ -24,16 +25,48 @@ export default class qrcode extends Component{
     constructor(props){
         super(props);
         this.state = {
+            expressid:this.props.expressid||'',
+            datetime:new Date()
         };
+        this._queryOpenStatus = this._queryOpenStatus.bind(this);
     }
 
     componentWillMount() {
     }
 
     componentWillUnmount() {
+        this.timer && clearTimeout(this.timer);
     }
 
     componentDidMount() {
+        this.timer = setTimeout(this._queryOpenStatus,5000); 
+    }
+
+    _queryOpenStatus(){
+        let {expressid,datetime} = this.state;
+        MomEnv.callApi('api/WebApi/QueryScanOpenStatus', 
+                 {"scantime": datetime,"expressid":expressid},
+                 (responseData)=>{
+                     this.setState({loading:false});
+                     if(responseData){
+                         if(responseData.status=="success"){
+                             if(responseData.result.open){
+                                 Alert.alert('提示','取件成功，请关闭箱门',[{text: '知道了', onPress: () => {
+                                     if(this.props.onopen){
+                                         this.props.onopen();
+                                     }
+                                     this.props.navigator.pop();
+                                 }}]);
+                             }else{
+                                 this.timer = setTimeout(this._queryOpenStatus,5000);
+                             }                              
+                         }else{
+                             this.timer = setTimeout(this._queryOpenStatus,5000); 
+                         }
+                     }else{
+                         this.timer = setTimeout(this._queryOpenStatus,5000);
+                     }
+                 });            
     }
 
     render() {
@@ -46,7 +79,7 @@ export default class qrcode extends Component{
                          <Text>{'请将此二维码对准箱体扫描设备,此二维码切勿泄露!'}</Text>
                       </View>
                       <QRCode
-                         value={this.props.expressid}
+                         value={this.props.barcode}
                          size={200}
                          bgColor='#000'
                          fgColor='#fff'/>

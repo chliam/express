@@ -79,6 +79,11 @@ export default class main extends Component{
         this.refs.tabbar.update(1);
     }
 
+    _gotoHome(){
+        this.setState({selectedTab:'home'});
+        this.refs.tabbar.update(0);
+    }
+
     render(){
         let {expressid} = this.state;
         return (
@@ -105,7 +110,7 @@ export default class main extends Component{
                     selectedTab: 'pickup',
                   });
                 }}>
-                <Pickup navigator={this.props.navigator} expressid={expressid}/>
+                <Pickup navigator={this.props.navigator} expressid={expressid} gotoHome={()=>{this._gotoHome()}}/>
               </TabBar.Item>
               <TabBar.Item
                 icon={require('./../../assets/tabMine.png')}

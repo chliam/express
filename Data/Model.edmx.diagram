@@ -16,6 +16,7 @@
         <EntityTypeShape EntityType="expressModel.socketlog" Width="1.5" PointX="8.75" PointY="3.75" />
         <EntityTypeShape EntityType="expressModel.feedback" Width="1.5" PointX="5.75" PointY="6.75" />
         <EntityTypeShape EntityType="expressModel.userpic" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="expressModel.notice" Width="1.5" PointX="8.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

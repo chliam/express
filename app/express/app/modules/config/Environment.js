@@ -17,7 +17,7 @@ const _urls = {
 };
 
 
-const _platform = 'production';
+const _platform = 'development';
 const _isDebug = false;
 var _navigator;
 var _selectedDay = null;

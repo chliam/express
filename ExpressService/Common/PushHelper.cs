@@ -26,6 +26,17 @@ namespace ExpressService
                 try
                 {
                     client.SendPush((PushPayload)obj);
+                    var db = Data.Entities.NewInstance;
+                    var notice = new Data.notice()
+                    {
+                        content = message,
+                        isread = false,
+                        noticetime = DateTime.Now,
+                        noticetype = 1,
+                        telephone = telephone
+                    };
+                    db.notices.Add(notice);
+                    db.SaveChanges();
                     LogHelper.LogInfo(string.Format("消息推送成功(收件人:{0} 消息:{1})",telephone,message));
                 }
                 catch (Exception e)

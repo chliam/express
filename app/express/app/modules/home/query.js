@@ -11,7 +11,8 @@ import {
   Navigator,
   BackAndroid,
   Platform,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 
 import MomEnv,{moment} from './../config/Environment';
@@ -21,6 +22,8 @@ import QRScanner from './../pickup/qrscanner';
 import Toast,{DURATION} from 'react-native-easy-toast';
 import Loading from './../shared/Loading';
 import Nav from './../shared/Nav';
+import ModalDropdown from 'react-native-modal-dropdown';
+let {width, height} = Dimensions.get('window');
 
 export default class query extends Component{
     constructor(props){
@@ -28,7 +31,9 @@ export default class query extends Component{
         this.state = {
             expressid:this.props.expressid||'',
             loading:false,
-            logistics:null
+            logistics:null,
+            companys:[],
+            companyindex:-1
         };
     }
 
@@ -39,20 +44,38 @@ export default class query extends Component{
     }
 
     componentDidMount() {
-        if(this.state.expressid && this.state.expressid.length>0){
-            this._search(this.state.expressid);
-        }
+        this._loadCompanys();
+    }
+
+    _loadCompanys(){
+        this.setState({loading:true});
+        MomEnv.callApi('api/WebApi/GetCompanys', 
+          {"telephone": ""},
+          (responseData)=>{
+              this.setState({loading:false});
+              if(responseData){
+                  if(responseData.status=="success"){
+                      if(responseData.result.companys){
+                          this.setState({companys:responseData.result.companys});
+                      }         
+                  }
+              }
+          });         
     }
 
     _search(expressid){
+        let {companys,companyindex} = this.state;
         if(expressid.length==0) { 
             this.refs.toast.show('请输入或扫描快递单号！',3000); 
+        } else if(companyindex == -1) { 
+            this.refs.toast.show('请选择快递公司！',3000); 
         } 
         else {
+            let company = companys[companyindex];
             MomEnv.getProfile().then((profile) => {
                 this.setState({loading:true});
                 MomEnv.callApi('api/WebApi/FindOneExpress', 
-                  {"telephone": profile.telephone,"expressid":expressid},
+                  {"telephone": profile.telephone,"expressid":expressid,"companyid":company.id},
                   (responseData)=>{
                       this.setState({loading:false});
                       if(responseData){
@@ -81,7 +104,13 @@ export default class query extends Component{
     }
 
     render() {
-        let {expressid,loading,logistics} = this.state;
+        let {expressid,loading,logistics,companys,company} = this.state;
+        let companynames = [];
+        if(companys){
+            companys.map((item)=>{
+                companynames.push(item.name);
+            });
+        }
         let htmls = [];
         if(logistics){
             if(logistics.logistics){
@@ -129,11 +158,7 @@ export default class query extends Component{
                       placeholderTextColor='#ddd' 
                       value={expressid}
                       onChangeText={(text) => {this.setState({expressid:text.replace(/\s/g, '')})}} 
-                      />
-                      <TouchableOpacity onPress={this._search.bind(this,expressid)}>
-                            <Image resizeMode="cover" source={require('./../../../assets/search.png')} style={{width:20,height:20,marginLeft:10,marginRight:10,tintColor:(MomEnv.MAIN_COLOR+'ee')}} />
-                      </TouchableOpacity>
-                      <View style={{width:1,height:16,backgroundColor:'#f2f2f2',marginLeft:5,marginRight:5}} />
+                      />                      
                       <TouchableOpacity onPress={()=>{
                             this.props.navigator.push({
                             component: QRScanner,
@@ -142,6 +167,22 @@ export default class query extends Component{
                       }}>
                             <Image resizeMode="cover" source={require('./../../../assets/scan.png')} style={{width:24,height:24,marginLeft:10,marginRight:10,tintColor:MomEnv.MAIN_COLOR}} />
                      </TouchableOpacity>                                         
+                   </View>
+                   <View style={{alignSelf:'stretch',height:1,backgroundColor:'#f2f2f2'}} />
+                 </View>
+                  <View style={{alignSelf:'stretch',height:44,backgroundColor:'#fff'}}>
+                   <View style={{flexDirection: 'row',flex:1,alignItems:'center',justifyContent:'flex-start'}}>                      
+                      <ModalDropdown 
+                                ref = {'drop'}
+                                style={{flex:1}} 
+                                textStyle={{fontSize:16,marginLeft:10}}                         
+                                dropdownStyle={{height:36*companynames.length,width:width-40,marginLeft:5,marginTop:5}}                                
+                                onSelect={(idx, value) => {this.setState({companyindex:idx})}}
+                                defaultValue={'--请选择快递公司--'}
+                                options={companynames}/>
+                      <TouchableOpacity onPress={this._search.bind(this,expressid)}>
+                            <Image resizeMode="cover" source={require('./../../../assets/search.png')} style={{width:24,height:24,marginLeft:10,marginRight:10,tintColor:(MomEnv.MAIN_COLOR+'ee')}} />
+                      </TouchableOpacity>                                       
                    </View>
                    <View style={{alignSelf:'stretch',height:1,backgroundColor:'#f2f2f2'}} />
                  </View>

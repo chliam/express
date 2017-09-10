@@ -34,7 +34,7 @@ export default class register extends Component{
             varcode:'',
             password:'',
             confirmpassword:'',
-            agree:false,
+            agree:this.props.forgetPassword?true:false,
             loading:false,
             countdown:0,
             servervarcode:''
@@ -205,7 +205,12 @@ export default class register extends Component{
                       />
                    </View>
                 </View>
-                <View style={{flexDirection: 'row',height:60,alignSelf:'stretch',alignItems:'center',justifyContent:'flex-start'}}>
+                   {
+                       forgetPassword
+                       ?
+                       (null)
+                       :
+                       (<View style={{flexDirection: 'row',height:60,alignSelf:'stretch',alignItems:'center',justifyContent:'flex-start'}}>
                         <TouchableOpacity onPress={()=>{this.setState({agree:!agree})}}>
                              <View style={{width:18,height:18,marginLeft:10,marginRight:10,borderRadius:3,borderWidth:1,alignItems:'center',justifyContent:'center',
                                  ...agree?{borderColor:MomEnv.MAIN_COLOR}:{borderColor:'#ccc'}}}>
@@ -223,7 +228,9 @@ export default class register extends Component{
                          }}>
                              <Text style={{fontSize:14,textDecorationLine:'underline' }}>{'智能快递柜系统用户协议'}</Text>
                          </TouchableOpacity>
-                </View>
+                       </View>)
+                   }
+                
                 <View style={{alignSelf:'stretch',flex:4,alignItems:'center',justifyContent:'center'}}>
                     {
                         agree

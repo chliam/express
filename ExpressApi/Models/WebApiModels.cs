@@ -62,6 +62,9 @@ namespace ExpressApi.Models
             public string pic1 { get; set; }
             public string pic2 { get; set; }
             public string pic3 { get; set; }
+            public string username { get; set; }
+            public string cardtype { get; set; }
+            public string cardnum { get; set; }
         }
 
         [Serializable]
@@ -70,6 +73,13 @@ namespace ExpressApi.Models
             public string status { get; set; }
             public string message { get; set; }
             public object result { get; set; }
-        }      
+        }
+
+        [Serializable]
+        public class QueryScanModel
+        {
+            public string expressid { get; set; }
+            public DateTime scantime { get; set; }
+        }
     }
 }

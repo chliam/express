@@ -22,6 +22,7 @@ import QRCode from './qrcode';
 import QRScanner from './qrscanner';
 import Toast,{DURATION} from 'react-native-easy-toast';
 import Loading from './../shared/Loading';
+import Expressdetail from './expressdetail';
 
 export default class pickup extends Component{
     constructor(props){
@@ -78,6 +79,13 @@ export default class pickup extends Component{
         } 
     }
 
+    _onopen(){
+        this._search();
+        if(this.props.gotoHome){
+            this.props.gotoHome();
+        }
+    }
+
     render() {
         let {expressid,waitexpresses,historyexpresses,selecttabindex,loading} = this.state;
         let items = selecttabindex==0?waitexpresses:historyexpresses;
@@ -88,8 +96,8 @@ export default class pickup extends Component{
                 htmls.push(
                     <TouchableOpacity key={index} onPress={()=>{
                            this.props.navigator.push({
-                             component: QRCode,
-                             passProps: {expressid:item.qrcode}
+                             component: selecttabindex==0?QRCode:Expressdetail,
+                             passProps: selecttabindex==0?{barcode:item.qrcode,expressid:item.id,onopen:this._onopen.bind(this)}:{express:item}
                            });
                          }}>
                                 <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:48,borderColor:'#ccc',borderBottomWidth:1,paddingLeft:10,paddingRight:10,backgroundColor:'#fff'}}>
@@ -106,7 +114,7 @@ export default class pickup extends Component{
                  );
             });
          }else{
-                     htmls.push(<Text key={0} style={{fontSize:12,color:'#999',alignSelf:'center',marginTop:20}}>{'暂无记录'}</Text>);
+                     htmls.push(<Text key={0} style={{fontSize:12,color:'#999',alignSelf:'center',marginTop:30}}>{selecttabindex==0?'您暂时没有待取包裹':'您暂时没有取件历史'}</Text>);
          }
 
         return (

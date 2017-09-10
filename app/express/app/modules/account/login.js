@@ -32,7 +32,7 @@ export default class login extends Component{
         this.state = {
             telephone:'',
             password:'',
-            agree:false,
+            agree:true,
             loading:false
         };
     }
@@ -129,26 +129,6 @@ export default class login extends Component{
                       onChangeText={(text) => {this.setState({password:text})}}    
                       />
                    </View>
-                </View>
-                <View style={{flexDirection: 'row',height:48,alignSelf:'stretch',alignItems:'center',justifyContent:'flex-start'}}>
-                         <TouchableOpacity onPress={()=>{this.setState({agree:!agree})}}>
-                             <View style={{width:18,height:18,marginLeft:10,marginRight:10,borderRadius:3,borderWidth:1,alignItems:'center',justifyContent:'center',
-                                 ...agree?{borderColor:MomEnv.MAIN_COLOR}:{borderColor:'#ccc'}}}>
-                                  <Text style={{fontSize:12,color:MomEnv.MAIN_COLOR}}>{agree?'√ ':''}</Text>
-                             </View>
-                         </TouchableOpacity>
-                         <TouchableOpacity onPress={()=>{this.setState({agree:!agree})}}>
-                             <Text style={{fontSize:14 }}>{'同意 '}</Text>
-                         </TouchableOpacity>
-                         <TouchableOpacity onPress={()=>{
-                            this.props.navigator.push({
-                              component: Consent,
-                              passProps: {title:'用户协议'}
-                            });
-                         }}>
-                             <Text style={{fontSize:14,textDecorationLine:'underline' }}>{'智能快递柜系统用户协议'}</Text>
-                         </TouchableOpacity>
-                         
                 </View>
                 <View style={{alignSelf:'stretch',flex:4,alignItems:'center',justifyContent:'center'}}>
                     {

@@ -219,13 +219,9 @@ namespace ExpressApi.Controllers
             try
             {
                 var db = Data.Entities.NewInstance;
-                var logistics = db.logistics.FirstOrDefault(p => p.id == model.expressid);
+                var logistics = db.logistics.FirstOrDefault(p => p.id == model.expressid && p.companyid == model.companyid);
                 var logisticsdetails = db.logisticsdetails.Where(p => p.id == model.expressid).OrderBy(p => p.datetime).ToList();
-                var company = string.Empty;
-                if (logistics != null)
-                {
-                    company = db.companies.FirstOrDefault(p => p.id == logistics.companyid)?.name;
-                }
+                var company = db.companies.FirstOrDefault(p => p.id == model.companyid)?.name;
                 return Ok(new ResultModel() { status = "success", result = new { logistics = logistics, company = company, logisticsdetails = logisticsdetails } });
             }
             catch (Exception es)
@@ -234,6 +230,33 @@ namespace ExpressApi.Controllers
             }         
         }
 
+        [ResponseType(typeof(ResultModel))]
+        [HttpPost]
+        public IHttpActionResult GetExpressDetail(FindExpressModel model)
+        {
+            try
+            {
+                var db = Data.Entities.NewInstance;
+                var company = string.Empty;
+                Data.logistic logistics = null;
+                List<Data.logisticsdetail> logisticsdetails = new List<Data.logisticsdetail>();
+                var express = db.expresses.FirstOrDefault(p => p.id == model.expressid);
+                if(express != null)
+                {
+                    logistics = db.logistics.FirstOrDefault(p => p.id == express.logisticid);
+                    logisticsdetails = db.logisticsdetails.Where(p => p.id == express.logisticid).OrderBy(p => p.datetime).ToList();
+                    if (logistics != null)
+                    {
+                        company = db.companies.FirstOrDefault(p => p.id == logistics.companyid)?.name;
+                    }
+                }                         
+                return Ok(new ResultModel() { status = "success", result = new { express = express, logistics = logistics, company = company, logisticsdetails = logisticsdetails } });
+            }
+            catch (Exception es)
+            {
+                return Ok(new ResultModel() { status = "failure", message = es.Message });
+            }
+        }
 
         [ResponseType(typeof(ResultModel))]
         [HttpPost]
@@ -271,7 +294,10 @@ namespace ExpressApi.Controllers
                     telephone = model.telephone,
                     pic1 = model.pic1,
                     pic2 = model.pic2,
-                    pic3 = model.pic3
+                    pic3 = model.pic3,
+                    username = model.username,
+                    cardnum = model.cardnum,
+                    cardtype = model.cardtype
                 };
                 db.userpics.Add(userpic);
                 db.SaveChanges();
@@ -292,6 +318,77 @@ namespace ExpressApi.Controllers
                 var db = Data.Entities.NewInstance;
                 var userpic = db.userpics.FirstOrDefault(p => p.telephone == model.telephone);
                 return Ok(new ResultModel() { status = "success",result=new { authed = (userpic!=null)} });
+            }
+            catch (Exception es)
+            {
+                return Ok(new ResultModel() { status = "failure", message = es.Message });
+            }
+        }
+
+        [ResponseType(typeof(ResultModel))]
+        [HttpPost]
+        public IHttpActionResult GetUnReadMsgCount(LoginModel model)
+        {
+            try
+            {
+                var db = Data.Entities.NewInstance;
+                var count = db.notices.Count(p => p.telephone == model.telephone && p.isread == false);
+                return Ok(new ResultModel() { status = "success", result = new { count = count } });
+            }
+            catch (Exception es)
+            {
+                return Ok(new ResultModel() { status = "failure", message = es.Message });
+            }
+        }
+
+        [ResponseType(typeof(ResultModel))]
+        [HttpPost]
+        public IHttpActionResult GetMessages(LoginModel model)
+        {
+            try
+            {
+                var db = Data.Entities.NewInstance;
+                var messages = db.notices.Where(p => p.telephone == model.telephone).ToList();
+                return Ok(new ResultModel() { status = "success", result = new { messages = messages } });
+            }
+            catch (Exception es)
+            {
+                return Ok(new ResultModel() { status = "failure", message = es.Message });
+            }
+        }
+
+        [ResponseType(typeof(ResultModel))]
+        [HttpPost]
+        public IHttpActionResult QueryScanOpenStatus(QueryScanModel model)
+        {
+            try
+            {
+                var db = Data.Entities.NewInstance;
+                var express = db.expresses.FirstOrDefault(p => p.id == model.expressid && p.state=="2" && p.outtime >= model.scantime);
+                if (express != null)
+                {
+                    return Ok(new ResultModel() { status = "success", result = new { open = true } });
+                }
+                else
+                {
+                    return Ok(new ResultModel() { status = "success", result = new { open = false } });
+                }               
+            }
+            catch (Exception es)
+            {
+                return Ok(new ResultModel() { status = "failure", message = es.Message });
+            }
+        }
+
+        [ResponseType(typeof(ResultModel))]
+        [HttpPost]
+        public IHttpActionResult GetCompanys(LoginModel model)
+        {
+            try
+            {
+                var db = Data.Entities.NewInstance;
+                var companys = db.companies.ToList();
+                return Ok(new ResultModel() { status = "success", result = new { companys = companys } });
             }
             catch (Exception es)
             {

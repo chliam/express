@@ -24,6 +24,7 @@
           <Property Name="scid" Type="varchar" MaxLength="50" />
           <Property Name="outtime" Type="datetime" Precision="0" />
           <Property Name="qrcode" Type="varchar" MaxLength="100" />
+          <Property Name="logisticid" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="feedback">
           <Key>
@@ -63,6 +64,18 @@
           <Property Name="datetime" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="detail" Type="varchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="notice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="noticetype" Type="int" Nullable="false" />
+          <Property Name="noticetime" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="content" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="telephone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isread" Type="bit" Nullable="false" />
+          <Property Name="readtime" Type="datetime" Precision="0" />
+        </EntityType>
         <EntityType Name="scinfo">
           <Key>
             <PropertyRef Name="id" />
@@ -99,6 +112,9 @@
           <Property Name="pic1" Type="longtext" Nullable="false" />
           <Property Name="pic2" Type="longtext" Nullable="false" />
           <Property Name="pic3" Type="longtext" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="cardtype" Type="varchar" MaxLength="50" />
+          <Property Name="cardnum" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="varcode">
           <Key>
@@ -117,6 +133,7 @@
           <EntitySet Name="gps" EntityType="Self.gps" Schema="express" store:Type="Tables" />
           <EntitySet Name="logistics" EntityType="Self.logistics" Schema="express" store:Type="Tables" />
           <EntitySet Name="logisticsdetail" EntityType="Self.logisticsdetail" Schema="express" store:Type="Tables" />
+          <EntitySet Name="notice" EntityType="Self.notice" Schema="express" store:Type="Tables" />
           <EntitySet Name="scinfo" EntityType="Self.scinfo" Schema="express" store:Type="Tables" />
           <EntitySet Name="socketlog" EntityType="Self.socketlog" Schema="express" store:Type="Tables" />
           <EntitySet Name="userinfo" EntityType="Self.userinfo" Schema="express" store:Type="Tables" />
@@ -146,6 +163,7 @@
           <Property Name="scid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="outtime" Type="DateTime" />
           <Property Name="qrcode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="logisticid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="gps">
           <Key>
@@ -213,6 +231,7 @@
           <EntitySet Name="socketlogs" EntityType="expressModel.socketlog" />
           <EntitySet Name="feedbacks" EntityType="expressModel.feedback" />
           <EntitySet Name="userpics" EntityType="expressModel.userpic" />
+          <EntitySet Name="notices" EntityType="expressModel.notice" />
         </EntityContainer>
         <EntityType Name="socketlog">
           <Key>
@@ -244,6 +263,21 @@
           <Property Name="pic1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="pic2" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="pic3" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cardtype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cardnum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="notice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="noticetype" Type="Int32" Nullable="false" />
+          <Property Name="noticetime" Type="DateTime" Nullable="false" />
+          <Property Name="content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="telephone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isread" Type="Boolean" Nullable="false" />
+          <Property Name="readtime" Type="DateTime" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -262,6 +296,7 @@
           <EntitySetMapping Name="expresses">
             <EntityTypeMapping TypeName="expressModel.express">
               <MappingFragment StoreEntitySet="express">
+                <ScalarProperty Name="logisticid" ColumnName="logisticid" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="telephoone" ColumnName="telephoone" />
@@ -359,10 +394,26 @@
           <EntitySetMapping Name="userpics">
             <EntityTypeMapping TypeName="expressModel.userpic">
               <MappingFragment StoreEntitySet="userpic">
+                <ScalarProperty Name="cardnum" ColumnName="cardnum" />
+                <ScalarProperty Name="cardtype" ColumnName="cardtype" />
+                <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="pic3" ColumnName="pic3" />
                 <ScalarProperty Name="pic2" ColumnName="pic2" />
                 <ScalarProperty Name="pic1" ColumnName="pic1" />
                 <ScalarProperty Name="telephone" ColumnName="telephone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notices">
+            <EntityTypeMapping TypeName="expressModel.notice">
+              <MappingFragment StoreEntitySet="notice">
+                <ScalarProperty Name="readtime" ColumnName="readtime" />
+                <ScalarProperty Name="isread" ColumnName="isread" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="noticetime" ColumnName="noticetime" />
+                <ScalarProperty Name="noticetype" ColumnName="noticetype" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
