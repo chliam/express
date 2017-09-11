@@ -51,6 +51,7 @@ export default class main extends Component{
         });
 
         JPushModule.addReceiveNotificationListener((map) => {
+            this._loadInitialState().done();
             Alert.alert("通知",map.alertContent,[{text: '知道了', onPress: () => {}},]);
             //console.warn("extras: " + map.extras);
         });

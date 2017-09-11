@@ -189,8 +189,7 @@ const styles = StyleSheet.create({
     },
     navItem: {
         flex: 1,
-        paddingTop: 6,
-        paddingBottom: 6,
+        padding:6,
         alignItems: 'center',
     },
     center: {
@@ -202,8 +201,9 @@ const styles = StyleSheet.create({
         width: 18,
         height: 18,
         marginBottom: 2,
+        marginTop:4
     },
-	navImageChange: {
+    navImageChange: {
 		// top: -28,
 		// width: 18,
 		// height: 18,
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
     badgeNoNumber: {
         flexDirection: 'row',
         justifyContent: 'center',
-        top: -2,
+        top: 0,
         left: 36,
         position: 'absolute',
         width: 8,
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
     badgeWithNumber: {
         flexDirection: 'row',
         justifyContent: 'center',
-        top: -4,
+        top: 0,
         left: 36,
         position: 'absolute',
         width: 16,
