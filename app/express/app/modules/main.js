@@ -25,13 +25,16 @@ export default class main extends Component{
     constructor(props){
         super(props);
         this.state = {
-            expressid:''
+            expressid:'',
+            msgCount:0
         };
+
+        this._notify = this._notify.bind(this);
     }
 
     componentWillUnmount() {
         MomEnv.unregPush({
-            name: "mainTab"
+            name: "main"
         });
     }
 
@@ -49,18 +52,31 @@ export default class main extends Component{
 
         JPushModule.addReceiveNotificationListener((map) => {
             Alert.alert("通知",map.alertContent,[{text: '知道了', onPress: () => {}},]);
-            //console.warn("alertContent: " + map.alertContent);
             //console.warn("extras: " + map.extras);
         });
+
+        this._loadInitialState().done();
     }
 
     _notify (badgeCount, category) {
         if (category == 1) {
             this.setState({msgCount: badgeCount});
         }
-        else if (category == 100) {
-            this.setState({wikiCount: badgeCount});
-        }
+    }
+
+    async _loadInitialState() {
+        MomEnv.getProfile().then((profile) => {
+            MomEnv.callApi('api/WebApi/GetUnReadMsgCount', 
+              {"telephone": profile.telephone},
+              (responseData)=>{
+                  if(responseData){
+                      if(responseData.status=="success"){
+                          //this.setState({msgCount:responseData.result.count});
+                          MomEnv.setNotification(1, responseData.result.count);
+                      }
+                  }
+              });            
+        });         
     }
 
     _gotoTab(tabName){
@@ -114,6 +130,7 @@ export default class main extends Component{
               </TabBar.Item>
               <TabBar.Item
                 icon={require('./../../assets/tabMine.png')}
+                badge={this.state.msgCount > 0 ? this.state.msgCount : undefined}
                 title={'我的'}
                 selected={this.state.selectedTab === 'mine'}
                 onPress={() => {

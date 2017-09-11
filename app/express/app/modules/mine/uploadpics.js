@@ -24,6 +24,7 @@ import ImagePicker from 'react-native-image-picker';
 import Nav from './../shared/Nav';
 
 let {width, height} = Dimensions.get('window');
+const CardTypes = ['身份证','护照','驾驶证'];
 
 export default class uploadpics extends Component{
     constructor(props){
@@ -33,7 +34,11 @@ export default class uploadpics extends Component{
             pic2:'',
             pic3:'',
             authed:false,
-            loading:false
+            loading:false,
+            step:1,
+            username:'',
+            cardtype:0,
+            cardnum:''
         };
     }
 
@@ -62,16 +67,16 @@ export default class uploadpics extends Component{
     }
 
     submit(){
-        let{pic1,pic2,pic3} = this.state;
+        let{pic1,pic2,pic3,step,username,cardnum,cardtype} = this.state;
         MomEnv.getProfile().then((profile) => {
             this.setState({loading:true});
             MomEnv.callApi('api/WebApi/UploadUserPic', 
-              {"telephone": profile.telephone,"pic1":pic1,"pic2":pic2,"pic3":pic3},
+              {"telephone": profile.telephone,"pic1":pic1,"pic2":pic2,"pic3":pic3,"username":username,"cardtype":cardtype,"cardnum":cardnum},
               (responseData)=>{
                   this.setState({loading:false});
                   if(responseData){
                       if(responseData.status=="success"){
-                          this.refs.toast.show(' 恭喜您，认证通过！ ',3000); 
+                          this.refs.toast.show(' 恭喜您，您已经通过实名认证！ ',3000); 
                           this.setState({authed:true});
                       }else{
                           this.refs.toast.show(responseData.message,3000);                                
@@ -115,14 +120,13 @@ export default class uploadpics extends Component{
     }
 
     render() {
-        let{pic1,pic2,pic3,loading,authed} = this.state;
+        let{pic1,pic2,pic3,step,username,cardnum,cardtype,loading,authed} = this.state;
         if(authed){
              return (
           <Container>
-              <Nav title={this.props.title}/>
-              <Advertisement/>
+              <Advertisement title={this.props.title}/>
               <View style={{flex:2,backgroundColor:'#fff'}}> 
-                   <Text style={{marginTop:20,alignSelf:'center'}}>{'您已经完成实名认证'}</Text>
+                   <Text style={{marginTop:20,alignSelf:'center'}}>{'您已经通过实名认证'}</Text>
               </View>    
               <Loading loading={loading} />
               <Toast ref="toast"
@@ -137,55 +141,135 @@ export default class uploadpics extends Component{
           <Container>
               <Advertisement title={this.props.title}/>
               <View style={{flex:2}}> 
-                  <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-around',height:160}}>
-                        <TouchableOpacity onPress={this.selectpic.bind(this,1)}>
-                            <View style={{width:90,height:90,backgroundColor:'#fff',borderRadius:25,alignItems:'center',justifyContent:'center'}}>
-                             {
-                                pic1 && pic1.length>0
-                                ?
-                                (<Image source={{uri:'data:image/jpeg;base64,'+pic1}} resizeMode="cover" style={{width:90,height:90,borderRadius:25}} />)
-                                :
-                                (<Text style={{fontSize:10,textAlign:'center'}}>{'点击上传\n身份证正面照片'}</Text>)
-                              }
-                            </View> 
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={this.selectpic.bind(this,2)}>                             
-                           <View style={{width:90,height:90,backgroundColor:'#fff',borderRadius:25,alignItems:'center',justifyContent:'center'}}>
-                            {
-                                pic2 && pic2.length>0
-                                ?
-                                (<Image source={{uri:'data:image/jpeg;base64,'+pic2}} resizeMode="cover" style={{width:90,height:90,borderRadius:25}} />)
-                                :
-                            (<Text style={{fontSize:10,textAlign:'center'}}>{'点击上传\n身份证反面照片'}</Text>)
-                            }
-                           </View> 
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={this.selectpic.bind(this,3)}>
-                           <View style={{width:90,height:90,backgroundColor:'#fff',borderRadius:25,alignItems:'center',justifyContent:'center'}}>
-                            {
-                                pic3 && pic3.length>0
-                                ?
-                                (<Image source={{uri:'data:image/jpeg;base64,'+pic3}} resizeMode="cover" style={{width:90,height:90,borderRadius:25}} />)
-                                :
-                                (<Text style={{fontSize:10,textAlign:'center'}}>{'点击上传\n手持身份证照片'}</Text>)
-                            }
-                           </View>
-                        </TouchableOpacity>                        
-                  </View>
+              {
+                  step==1
+                  ?
+                  (<View style={{alignSelf:'stretch',paddingTop:0,alignItems:'center',justifyContent:'center'}}>
+                      <View style={{flexDirection:'row',alignItems:'center',borderColor:'#ccc',borderBottomWidth:1,paddingLeft:10,paddingRight:2,backgroundColor:'#fff'}}>
+                         <Text style={{marginRight:15,width:60}}>{'姓名'}</Text>
+                         <TextInput 
+                            style={{flex:1,fontSize:14,padding: 0,height:48}} 
+                            underlineColorAndroid="transparent" 
+                            placeholder='请输入姓名' 
+                            placeholderTextColor='#ddd' 
+                            value={username}
+                            onChangeText={(text) => {this.setState({username:text})}}    
+                       />
+                     </View>
+                     <View style={{flexDirection:'row',alignItems:'center',height:48,borderColor:'#ccc',borderBottomWidth:1,paddingLeft:10,paddingRight:10,backgroundColor:'#fff'}}>
+                         <Text style={{marginRight:15,width:60}}>{'反馈类型'}</Text>
+                         <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
+                             <ModalDropdown 
+                                ref = {'drop'}
+                                style={{flex:1}} 
+                                textStyle={{fontSize:14,color:'#000'}}
+                                dropdownStyle={{height:108,width:width-100,marginLeft:-5,marginTop:5}}                                
+                                onSelect={(idx, value) => {this.setState({cardtype:idx});}}
+                                defaultValue={CardTypes[0]}
+                                options={CardTypes}/>
+                             <TouchableOpacity onPress={()=>{this.refs.drop.show()}}>
+                               <Image resizeMode="contain" source={require('./../../../assets/arrow_left.png')} style={{width:8,height:14,transform:[{ rotateZ: '270deg' }],tintColor:MomEnv.MAIN_COLOR}} />
+                             </TouchableOpacity>
+                         </View>
+                    </View>
+                    <View style={{flexDirection:'row',alignItems:'center',borderColor:'#ccc',borderBottomWidth:1,paddingLeft:10,paddingRight:2,backgroundColor:'#fff'}}>
+                         <Text style={{marginRight:15,width:60}}>{'证件号码'}</Text>
+                         <TextInput 
+                            style={{flex:1,fontSize:14,padding: 0,height:48}} 
+                            underlineColorAndroid="transparent" 
+                            placeholder='请输入证件号码' 
+                            placeholderTextColor='#ddd' 
+                            value={cardnum}
+                            onChangeText={(text) => {this.setState({cardnum:text})}}    
+                       />
+                     </View>
+                   </View>)
+                  :
+                  (<View style={{alignSelf:'stretch',paddingTop:5,alignItems:'center',justifyContent:'center'}}>
+                        <View style={{alignSelf:'stretch',flexDirection:'row',alignItems:'center',justifyContent:'space-around',margin:5}}>
+                             <View style={{width:135,height:81}}>
+                                  <Image source={require('./../../../assets/card1.png')} resizeMode="cover" style={{width:135,height:81}} />
+                             </View>
+                             <TouchableOpacity onPress={this.selectpic.bind(this,1)}>
+                                <View style={{width:135,height:81,backgroundColor:'#fff',alignItems:'center',justifyContent:'center'}}>
+                                 {
+                                     pic1 && pic1.length>0
+                                     ?
+                                     (<Image source={{uri:'data:image/jpeg;base64,'+pic1}} resizeMode="cover" style={{width:135,height:81}} />)
+                                    :
+                                    (<Image source={require('./../../../assets/introductionPhoto.png')} resizeMode="cover" style={{width:43,height:34}} />)
+                                 }
+                                </View> 
+                             </TouchableOpacity>
+                        </View>
+                        <View style={{alignSelf:'stretch',flexDirection:'row',alignItems:'center',justifyContent:'space-around',margin:5}}>
+                             <View style={{width:135,height:81}}>
+                                  <Image source={require('./../../../assets/card2.png')} resizeMode="cover" style={{width:135,height:81}} />
+                             </View>
+                             <TouchableOpacity onPress={this.selectpic.bind(this,2)}>                             
+                                <View style={{width:135,height:81,backgroundColor:'#fff',alignItems:'center',justifyContent:'center'}}>
+                                  {
+                                      pic2 && pic2.length>0
+                                      ?
+                                      (<Image source={{uri:'data:image/jpeg;base64,'+pic2}} resizeMode="cover" style={{width:135,height:81}} />)
+                                     :
+                                      (<Image source={require('./../../../assets/introductionPhoto.png')} resizeMode="cover" style={{width:43,height:34}} />)
+                                  }
+                                </View> 
+                             </TouchableOpacity>
+                        </View>
+
+                        <View style={{alignSelf:'stretch',flexDirection:'row',alignItems:'center',justifyContent:'space-around',margin:5}}>
+                             <View style={{width:135,height:81}}>
+                                  <Image source={require('./../../../assets/card3.png')} resizeMode="cover" style={{width:135,height:81}} />
+                             </View>
+                             <TouchableOpacity onPress={this.selectpic.bind(this,3)}>
+                                <View style={{width:135,height:81,backgroundColor:'#fff',alignItems:'center',justifyContent:'center'}}>
+                                  {
+                                      pic3 && pic3.length>0
+                                      ?
+                                      (<Image source={{uri:'data:image/jpeg;base64,'+pic3}} resizeMode="cover" style={{width:135,height:81}} />)
+                                     :
+                                      (<Image source={require('./../../../assets/introductionPhoto.png')} resizeMode="cover" style={{width:43,height:34}} />)
+                                  }
+                                </View>
+                             </TouchableOpacity>
+                        </View>                            
+                  </View>)
+              }                 
                   <View style={{flex:1,alignItems:'center',marginTop:20}}>
                       {
-                          pic1 && pic1.length>0 && pic2 && pic2.length>0 && pic3 && pic3.length>0
+                         step==1
+                         ?
+                         (
+                          username && username.length>0 && cardnum && cardnum.length>0
                           ?
-                          (<TouchableOpacity onPress={this.submit.bind(this)}>
+                          (<TouchableOpacity onPress={()=>{this.setState({step:2})}}>
                               <View style={{backgroundColor:MomEnv.MAIN_COLOR,height:40,width:0.8*width,borderRadius:5,alignItems:'center',justifyContent:'center'}}>
-                                   <Text style={{color:'#fff',fontSize:16 }}>{'开始认证'}</Text>
+                                   <Text style={{color:'#fff',fontSize:16 }}>{'下一步'}</Text>
                               </View>
                            </TouchableOpacity>)
                           :
                           (<View style={{backgroundColor:'#ccc',height:40,width:0.8*width,borderRadius:5,alignItems:'center',justifyContent:'center'}}>
-                                <Text style={{color:'#fff',fontSize:16 }}>{'开始认证'}</Text>
+                                <Text style={{color:'#fff',fontSize:16 }}>{'下一步'}</Text>
                            </View>)
-                      }                     
+                         )
+                         :
+                         (
+                          pic1 && pic1.length>0 && pic2 && pic2.length>0 && pic3 && pic3.length>0
+                          ?
+                          (<TouchableOpacity onPress={this.submit.bind(this)}>
+                              <View style={{backgroundColor:MomEnv.MAIN_COLOR,height:40,width:0.8*width,borderRadius:5,alignItems:'center',justifyContent:'center'}}>
+                                   <Text style={{color:'#fff',fontSize:16 }}>{'提交材料'}</Text>
+                              </View>
+                           </TouchableOpacity>)
+                          :
+                          (<View style={{backgroundColor:'#ccc',height:40,width:0.8*width,borderRadius:5,alignItems:'center',justifyContent:'center'}}>
+                                <Text style={{color:'#fff',fontSize:16 }}>{'提交材料'}</Text>
+                           </View>)
+                         )
+                      }
+                                    
                   </View>
               </View>    
               <Loading loading={loading} />

@@ -349,6 +349,15 @@ namespace ExpressApi.Controllers
             {
                 var db = Data.Entities.NewInstance;
                 var messages = db.notices.Where(p => p.telephone == model.telephone).ToList();
+                foreach (var msg in messages)
+                {
+                    if (!msg.isread)
+                    {
+                        msg.isread = true;
+                        msg.readtime = DateTime.Now;
+                    }
+                }
+                db.SaveChanges();
                 return Ok(new ResultModel() { status = "success", result = new { messages = messages } });
             }
             catch (Exception es)
