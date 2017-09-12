@@ -36,6 +36,7 @@ export default class main extends Component{
         MomEnv.unregPush({
             name: "main"
         });
+        JPushModule.removeReceiveNotificationListener();
     }
 
     componentDidMount() {
@@ -52,7 +53,11 @@ export default class main extends Component{
 
         JPushModule.addReceiveNotificationListener((map) => {
             this._loadInitialState().done();
-            Alert.alert("通知",map.alertContent,[{text: '知道了', onPress: () => {}},]);
+            Alert.alert("通知",map.alertContent,[{text: '知道了', onPress: () => {
+                this.setState({selectedTab:'pickup'});
+                this.refs.tabbar.update(1);
+                this.refs.pickup.reload();
+            }},]);
             //console.warn("extras: " + map.extras);
         });
 
@@ -127,7 +132,7 @@ export default class main extends Component{
                     selectedTab: 'pickup',
                   });
                 }}>
-                <Pickup navigator={this.props.navigator} expressid={expressid} gotoHome={()=>{this._gotoHome()}}/>
+                <Pickup ref='pickup' navigator={this.props.navigator} expressid={expressid} gotoHome={()=>{this._gotoHome()}}/>
               </TabBar.Item>
               <TabBar.Item
                 icon={require('./../../assets/tabMine.png')}

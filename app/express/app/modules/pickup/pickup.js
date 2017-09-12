@@ -46,6 +46,11 @@ export default class pickup extends Component{
         this._search();
     }
 
+    reload(){
+        this.setState({expressid:''});
+        this._search();
+    }
+
     _onGetBarcode(expressid){
         this.setState({expressid:expressid});
         this._search();
