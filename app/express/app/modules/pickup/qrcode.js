@@ -36,6 +36,7 @@ export default class qrcode extends Component{
 
     componentWillUnmount() {
         this.timer && clearTimeout(this.timer);
+        this.timer == null;
     }
 
     componentDidMount() {
@@ -58,13 +59,19 @@ export default class qrcode extends Component{
                                      this.props.navigator.pop();
                                  }}]);
                              }else{
-                                 this.timer = setTimeout(this._queryOpenStatus,5000);
+                                 if(this.timer){
+                                     this.timer = setTimeout(this._queryOpenStatus,5000);
+                                 }                                 
                              }                              
                          }else{
-                             this.timer = setTimeout(this._queryOpenStatus,5000); 
+                             if(this.timer){
+                                 this.timer = setTimeout(this._queryOpenStatus,5000);
+                             }  
                          }
                      }else{
-                         this.timer = setTimeout(this._queryOpenStatus,5000);
+                         if(this.timer){
+                             this.timer = setTimeout(this._queryOpenStatus,5000);
+                         }  
                      }
                  });            
     }

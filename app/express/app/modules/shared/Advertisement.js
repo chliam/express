@@ -43,7 +43,7 @@ export default class Advertisement extends Component{
     render(){
         
         return (           
-          <View style={[{flex:1.1,width:width,backgroundColor:MomEnv.NAVBAR_BG_COLOR,alignItems:'center',justifyContent:'center'},this.props.style]}>
+          <View style={[{flex:this.props.pager?1.1:0.5,width:width,backgroundColor:MomEnv.NAVBAR_BG_COLOR,alignItems:'center',justifyContent:'center'},this.props.style]}>
             {
               this.props.pager
               ?

@@ -22,6 +22,8 @@ import Toast,{DURATION} from 'react-native-easy-toast';
 import Loading from './../shared/Loading';
 import ImagePicker from 'react-native-image-picker';
 import Nav from './../shared/Nav';
+import ImageViewer from './../lib/imageview/ImageView';
+
 
 let {width, height} = Dimensions.get('window');
 const CardTypes = ['身份证','护照','驾驶证'];
@@ -38,7 +40,12 @@ export default class uploadpics extends Component{
             step:1,
             username:'',
             cardtype:0,
-            cardnum:''
+            cardnum:'',
+            shownviewimage:false,
+            showindex:0,
+            pic1Url:'',
+            pic2Url:'',
+            pic3Url:'',
         };
     }
 
@@ -89,13 +96,15 @@ export default class uploadpics extends Component{
     }
 
     selectpic(pictype){
+        let{pic1,pic2,pic3} = this.state;
         var options = {
             title: '',
             takePhotoButtonTitle:'拍照',
             chooseFromLibraryButtonTitle:'从手机相册选择',
             cancelButtonTitle:'取消',
+            customButtons: ((pictype==1&&pic1) || (pictype==2&&pic2) || (pictype==3&&pic3)) ? [{name: '查看', title: '查看图片'},] : [],
             mediaType:'photo',
-            quality:0.8,
+            quality:0.6,
             storageOptions: {
                 skipBackup: true,                
                 path: 'images'
@@ -105,14 +114,18 @@ export default class uploadpics extends Component{
         ImagePicker.showImagePicker(options, (response) => {
             if (response.error) {
                 this.refs.toast.show(response.error,3000); 
+            } else if (response.customButton) {
+                this.setState({shownviewimage:true,showindex:pictype-1});
             }
             else {
-                if(pictype==1){
-                    this.setState({pic1:response.data});
-                }else if(pictype==2){
-                    this.setState({pic2:response.data});
-                }else if(pictype==3){
-                    this.setState({pic3:response.data});
+                if(response.data){
+                    if(pictype==1){
+                        this.setState({pic1:response.data,pic1Url:response.uri});
+                    }else if(pictype==2){
+                        this.setState({pic2:response.data,pic2Url:response.uri});
+                    }else if(pictype==3){
+                        this.setState({pic3:response.data,pic3Url:response.uri});
+                    }
                 }
                 // let source = { uri: 'data:image/jpeg;base64,' + response.data };
             }
@@ -120,9 +133,9 @@ export default class uploadpics extends Component{
     }
 
     render() {
-        let{pic1,pic2,pic3,step,username,cardnum,cardtype,loading,authed} = this.state;
+        let{pic1,pic2,pic3,pic1Url,pic2Url,pic3Url,step,username,cardnum,cardtype,loading,authed,shownviewimage,showindex} = this.state;
         if(authed){
-             return (
+        return (
           <Container>
               <Advertisement title={this.props.title}/>
               <View style={{flex:2,backgroundColor:'#fff'}}> 
@@ -146,7 +159,7 @@ export default class uploadpics extends Component{
                   ?
                   (<View style={{alignSelf:'stretch',paddingTop:0,alignItems:'center',justifyContent:'center'}}>
                       <View style={{flexDirection:'row',alignItems:'center',borderColor:'#ccc',borderBottomWidth:1,paddingLeft:10,paddingRight:2,backgroundColor:'#fff'}}>
-                         <Text style={{marginRight:15,width:60}}>{'姓名'}</Text>
+                         <Text style={{width:80}}>{'姓名'}</Text>
                          <TextInput 
                             style={{flex:1,fontSize:14,padding: 0,height:48}} 
                             underlineColorAndroid="transparent" 
@@ -157,7 +170,7 @@ export default class uploadpics extends Component{
                        />
                      </View>
                      <View style={{flexDirection:'row',alignItems:'center',height:48,borderColor:'#ccc',borderBottomWidth:1,paddingLeft:10,paddingRight:10,backgroundColor:'#fff'}}>
-                         <Text style={{marginRight:15,width:60}}>{'反馈类型'}</Text>
+                         <Text style={{width:80}}>{'证件类型'}</Text>
                          <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
                              <ModalDropdown 
                                 ref = {'drop'}
@@ -173,7 +186,7 @@ export default class uploadpics extends Component{
                          </View>
                     </View>
                     <View style={{flexDirection:'row',alignItems:'center',borderColor:'#ccc',borderBottomWidth:1,paddingLeft:10,paddingRight:2,backgroundColor:'#fff'}}>
-                         <Text style={{marginRight:15,width:60}}>{'证件号码'}</Text>
+                         <Text style={{width:80}}>{'证件号码'}</Text>
                          <TextInput 
                             style={{flex:1,fontSize:14,padding: 0,height:48}} 
                             underlineColorAndroid="transparent" 
@@ -195,7 +208,7 @@ export default class uploadpics extends Component{
                                  {
                                      pic1 && pic1.length>0
                                      ?
-                                     (<Image source={{uri:'data:image/jpeg;base64,'+pic1}} resizeMode="cover" style={{width:135,height:81}} />)
+                                     (<Image source={{uri:pic1Url}} resizeMode="cover" style={{width:135,height:81}} />)
                                     :
                                     (<Image source={require('./../../../assets/introductionPhoto.png')} resizeMode="cover" style={{width:43,height:34}} />)
                                  }
@@ -211,7 +224,7 @@ export default class uploadpics extends Component{
                                   {
                                       pic2 && pic2.length>0
                                       ?
-                                      (<Image source={{uri:'data:image/jpeg;base64,'+pic2}} resizeMode="cover" style={{width:135,height:81}} />)
+                                      (<Image source={{uri:pic2Url}} resizeMode="cover" style={{width:135,height:81}} />)
                                      :
                                       (<Image source={require('./../../../assets/introductionPhoto.png')} resizeMode="cover" style={{width:43,height:34}} />)
                                   }
@@ -228,7 +241,7 @@ export default class uploadpics extends Component{
                                   {
                                       pic3 && pic3.length>0
                                       ?
-                                      (<Image source={{uri:'data:image/jpeg;base64,'+pic3}} resizeMode="cover" style={{width:135,height:81}} />)
+                                      (<Image source={{uri:pic3Url}} resizeMode="cover" style={{width:135,height:81}} />)
                                      :
                                       (<Image source={require('./../../../assets/introductionPhoto.png')} resizeMode="cover" style={{width:43,height:34}} />)
                                   }
@@ -278,6 +291,11 @@ export default class uploadpics extends Component{
                   fadeOutDuration={600}
                   opacity={0.8}
               />
+              <ImageViewer shown={shownviewimage}
+                 imageUrls={[pic1Url||'empty',pic2Url||'empty',pic3Url||'empty']}
+                 onClose={()=>{this.setState({shownviewimage:false,showindex:0})}}
+                 index={showindex}>
+              </ImageViewer>      
           </Container>
         );
         }      

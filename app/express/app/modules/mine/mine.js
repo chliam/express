@@ -99,7 +99,7 @@ export default class mine extends Component{
         let {msgCount} = this.state;
         return (
           <Container>
-              <View style={{flex:1.1,backgroundColor:MomEnv.NAVBAR_BG_COLOR,alignItems:'center',justifyContent:'center'}}>
+              <View style={{flex:0.5,backgroundColor:MomEnv.NAVBAR_BG_COLOR,alignItems:'center',justifyContent:'center'}}>
                   <View style={{width:90,height:90,borderRadius:45,backgroundColor:'#fff',overflow :'hidden',alignItems:'center',justifyContent:'center'}}>
                      <Image resizeMode="cover" source={require('./../../../assets/userhead.png')} style={{width:60,height:60}} />
                   </View>               

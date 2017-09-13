@@ -183,7 +183,7 @@ namespace ExpressApi.Controllers
             {
                 var db = Data.Entities.NewInstance;
                 var query = from e in db.expresses
-                            join l in db.logistics on e.id equals l.id into templ
+                            join l in db.logistics on e.logisticid equals l.id into templ
                             from ll in templ.DefaultIfEmpty()
                             join c in db.companies on ll.companyid equals c.id into tempc
                             from cc in tempc.DefaultIfEmpty()

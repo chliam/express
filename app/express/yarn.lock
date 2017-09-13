@@ -2008,6 +2008,10 @@ istanbul-reports@^1.1.2:
   dependencies:
     handlebars "^4.0.3"
 
+jcore-react-native@^1.1.8-beta:
+  version "1.1.8"
+  resolved "https://registry.npmjs.org/jcore-react-native/-/jcore-react-native-1.1.8.tgz#c9ef7eb7d2bc55576a2a69c02b9687ab7a865117"
+
 jest-changed-files@^20.0.3:
   version "20.0.3"
   resolved "http://registry.npm.taobao.org/jest-changed-files/download/jest-changed-files-20.0.3.tgz#9394d5cc65c438406149bef1bf4d52b68e03e3f8"
@@ -2237,6 +2241,10 @@ joi@^6.6.1:
     isemail "1.x.x"
     moment "2.x.x"
     topo "1.x.x"
+
+jpush-react-native@^2.0.6:
+  version "2.0.7"
+  resolved "https://registry.npmjs.org/jpush-react-native/-/jpush-react-native-2.0.7.tgz#8e31266a88259f2707128eb9a2c67cce69713ce1"
 
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
