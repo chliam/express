@@ -32,8 +32,8 @@ export default class query extends Component{
             expressid:this.props.expressid||'',
             loading:false,
             logistics:null,
-            companys:[],
-            companyindex:-1
+            companys:[{id:'',name:'--请选择快递公司--'}],
+            companyindex:0
         };
     }
 
@@ -56,6 +56,7 @@ export default class query extends Component{
               if(responseData){
                   if(responseData.status=="success"){
                       if(responseData.result.companys){
+                          responseData.result.companys.splice(0,0,{id:'',name:'--请选择快递公司--'})
                           this.setState({companys:responseData.result.companys});
                       }         
                   }
@@ -67,8 +68,6 @@ export default class query extends Component{
         let {companys,companyindex} = this.state;
         if(expressid.length==0) { 
             this.refs.toast.show('请输入或扫描快递单号！',3000); 
-        } else if(companyindex == -1) { 
-            this.refs.toast.show('请选择快递公司！',3000); 
         } 
         else {
             let company = companys[companyindex];
@@ -135,7 +134,7 @@ export default class query extends Component{
                        items.push(
                          <View key={index+4} style={{flexDirection:'row',alignSelf:'stretch',marginTop:4,marginBottom:2,alignItems:'center'}}>
                            <Text style={{width:120,fontSize:13}}>{moment(item.datetime).format('YYYY-MM-DD HH:mm')}</Text>
-                           <Text style={{fontSize:13}}>{item.detail}</Text>
+                           <Text style={{flex:1,fontSize:13}}>{item.detail}</Text>
                         </View>
                        );
                    });

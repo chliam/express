@@ -85,15 +85,14 @@ export default class expressdetail extends Component{
                           <Text style={{fontWeight:'bold'}}>{'取件时间'}</Text>
                           <Text>{moment(express.outtime).format('YYYY-MM-DD HH:mm')}</Text>
                    </View>);
+            items.push(
+                   <View key={1} style={{flexDirection:'row',alignSelf:'stretch',height:40,alignItems:'center',justifyContent:'space-between',borderBottomWidth:1,borderBottomColor:'#f2f2f2'}}>
+                           <Text style={{fontWeight:'bold'}}>{'快递单号'}</Text>
+                           <Text>{express.id}</Text>
+                   </View>);
         }
         if(logistics){
-            if(logistics.logistics){
-                
-                items.push(
-                    <View key={1} style={{flexDirection:'row',alignSelf:'stretch',height:40,alignItems:'center',justifyContent:'space-between',borderBottomWidth:1,borderBottomColor:'#f2f2f2'}}>
-                           <Text style={{fontWeight:'bold'}}>{'快递单号'}</Text>
-                           <Text>{logistics.logistics.id}</Text>
-                    </View>);
+            if(logistics.logistics){             
                 items.push(
                     <View key={2} style={{flexDirection:'row',alignSelf:'stretch',height:40,alignItems:'center',justifyContent:'space-between',borderBottomWidth:1,borderBottomColor:'#f2f2f2'}}>
                            <Text style={{fontWeight:'bold'}}>{'快递公司'}</Text>
@@ -109,7 +108,7 @@ export default class expressdetail extends Component{
                        items.push(
                          <View key={index+4} style={{flexDirection:'row',alignSelf:'stretch',marginTop:4,marginBottom:2,alignItems:'center'}}>
                            <Text style={{width:120,fontSize:13}}>{moment(item.datetime).format('YYYY-MM-DD HH:mm')}</Text>
-                           <Text style={{fontSize:13}}>{item.detail}</Text>
+                           <Text style={{flex:1,fontSize:13}}>{item.detail}</Text>
                         </View>
                        );
                    });

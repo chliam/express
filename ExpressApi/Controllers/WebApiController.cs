@@ -219,9 +219,21 @@ namespace ExpressApi.Controllers
             try
             {
                 var db = Data.Entities.NewInstance;
-                var logistics = db.logistics.FirstOrDefault(p => p.id == model.expressid && p.companyid == model.companyid);
+                Data.logistic logistics;
+                string company = string.Empty;
+                if (string.IsNullOrEmpty(model.companyid))
+                {
+                    logistics = db.logistics.FirstOrDefault(p => p.id == model.expressid);
+                }
+                else
+                {
+                    logistics = db.logistics.FirstOrDefault(p => p.id == model.expressid && p.companyid == model.companyid);                    
+                }                
                 var logisticsdetails = db.logisticsdetails.Where(p => p.id == model.expressid).OrderBy(p => p.datetime).ToList();
-                var company = db.companies.FirstOrDefault(p => p.id == model.companyid)?.name;
+                if (logistics != null)
+                {
+                    company = db.companies.FirstOrDefault(p => p.id == logistics.companyid)?.name;
+                }
                 return Ok(new ResultModel() { status = "success", result = new { logistics = logistics, company = company, logisticsdetails = logisticsdetails } });
             }
             catch (Exception es)
