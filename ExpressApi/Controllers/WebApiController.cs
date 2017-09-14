@@ -292,9 +292,12 @@ namespace ExpressApi.Controllers
                 var userpic = new Data.userpic()
                 {
                     telephone = model.telephone,
-                    pic1 = model.pic1,
-                    pic2 = model.pic2,
-                    pic3 = model.pic3,
+                    //pic1 = model.pic1,
+                    //pic2 = model.pic2,
+                    //pic3 = model.pic3,
+                    pic1 = "",
+                    pic2 = "",
+                    pic3 = "",
                     username = model.username,
                     cardnum = model.cardnum,
                     cardtype = model.cardtype
