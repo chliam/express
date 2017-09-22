@@ -54,7 +54,7 @@ namespace ExpressService.Socket
                             express.intime = DateTime.Now;
                             express.state = "1";
                             express.scid = scid;
-                            express.qrcode = string.Format("{0}:{1}#", expressid, scid); //TODO:推送给用户
+                            express.qrcode = string.Format("{0}:{1}#", scid, expressid); //TODO:推送给用户
                             Data.Entities.Instance.SaveChanges();
                             PushHelper.PushMessage(express.telephoone,string.Format("您有新的快递,请尽快收取,快递单号:{0}",expressid));                       
                             var sendData = CmdHelper.GenSocketData(new List<byte[]> {
