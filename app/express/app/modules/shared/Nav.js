@@ -27,7 +27,15 @@ export default class nav extends Component{
                      </TouchableOpacity>)
                 }             
                 <Text style={{color:MomEnv.NAVBAR_TITLE_COLOR,fontSize:14}}>{this.props.title}</Text>
-                <View style={{width:30}}></View>
+                {
+                    this.props.righttitle
+                    ?
+                    (<TouchableOpacity onPress={()=>{this.props.righthandle()}} style={{padding:10}}>
+                         <Text style={{color:MomEnv.NAVBAR_TITLE_COLOR,fontSize:14}}>{this.props.righttitle}</Text>
+                     </TouchableOpacity>)                   
+                    :
+                    (<View style={{width:30}}></View>)
+                } 
           </View>
     );
   }

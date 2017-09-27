@@ -383,6 +383,34 @@ namespace ExpressApi.Controllers
 
         [ResponseType(typeof(ResultModel))]
         [HttpPost]
+        public IHttpActionResult DelMessages(DelMessagesModel model)
+        {
+            try
+            {
+                if (model.ids == null)
+                {
+                    model.ids = new List<int>();
+                }
+                var db = Data.Entities.NewInstance;               
+                var messages = db.notices.Where(p => p.telephone == model.telephone).ToList();
+                foreach (var msg in messages)
+                {
+                    if (model.delall || model.ids.Contains(msg.id))
+                    {
+                        db.notices.Remove(msg);
+                    }
+                }
+                db.SaveChanges();
+                return Ok(new ResultModel() { status = "success" });
+            }
+            catch (Exception es)
+            {
+                return Ok(new ResultModel() { status = "failure", message = es.Message });
+            }
+        }
+
+        [ResponseType(typeof(ResultModel))]
+        [HttpPost]
         public IHttpActionResult QueryScanOpenStatus(QueryScanModel model)
         {
             try

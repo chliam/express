@@ -81,5 +81,14 @@ namespace ExpressApi.Models
             public string expressid { get; set; }
             public DateTime scantime { get; set; }
         }
+
+        [Serializable]
+        public class DelMessagesModel
+        {
+            public string telephone { get; set; }
+            public string password { get; set; }
+            public List<int> ids { get; set; }
+            public bool delall { get; set; }
+        }
     }
 }

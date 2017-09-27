@@ -57,7 +57,7 @@ export default class Advertisement extends Component{
                 (<Image style={[{flex:1,width:width},this.props.style]} resizeMode="cover" source={require('./../../../assets/barner.png')}/>)
             }            
             <View style={{position:'absolute',left:0,top:0,width:width,height:40}}>
-                <Nav title={this.props.title} hideback={this.props.hideback}/>
+                <Nav title={this.props.title} hideback={this.props.hideback} righttitle={this.props.righttitle} righthandle={this.props.righthandle} />
             </View> 
           </View>
     );
